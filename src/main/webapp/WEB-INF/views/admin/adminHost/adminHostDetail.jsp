@@ -211,9 +211,9 @@
 		</div>
 		
 		<div class="mem-item5">
+			<div><button class="a2" type="submit" id="hostList" data-oper="list">돌아가기</button></div>
 			<div><a class="a1" href='<c:out value="${hostVO.h_id }" />'>수정하기</a></div>
 			<div><button id="deleteHost" value="${hostVO.h_id }" >탈퇴하기</button></div>
-			<div><button class="a2" type="submit" id="hostList" data-oper="list">돌아가기</button></div>
 		</div>	
 	</section>
 	<form id="operForm" action="${contextPath }/admin/hostList.do" method="get">

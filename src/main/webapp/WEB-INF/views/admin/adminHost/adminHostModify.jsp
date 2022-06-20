@@ -210,10 +210,10 @@
 	line-height:50px; 
 	text-align:center; 
 	border-radius: 5px; 
-	border: none; 
+	border: 1px solid #666666; 
 	text-decoration: none;
-	background: #ff3333;
-	color: #ffffff;	
+	background: #ffffff;
+	color: #666666;	
 }
 .address-text{
 	width: 100px;
@@ -365,7 +365,7 @@ $(document).ready(function(){
 				<div class="mem-item2-chil-2-select">
 					<div>
 						<select name="del_yn" id="del_yn">
-							<option value="">이메일 선택</option>
+							<option value="">등록 상태</option>
 							<option value="N" >등록 완료</option>
 							<option value="Y"  >등록 해지</option>
 						</select>
@@ -410,8 +410,8 @@ $(document).ready(function(){
 			</div>
 		</div>
 		<div class="mem-item5">
-			<div><button id="updateHost" type="submit" class="a1" data-oper="modify">수정하기</button></div>
 			<div><button class="a2" data-oper="detail" value='<c:out value="${hostVO.h_id }" />'>돌아가기</button></div>
+			<div><button id="updateHost" type="submit" class="a1" data-oper="modify">수정하기</button></div>
 		</div>
 		<input type="hidden" name="h_sellerNum" value="${hostVO.h_sellerNum }">
 		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }" />'>

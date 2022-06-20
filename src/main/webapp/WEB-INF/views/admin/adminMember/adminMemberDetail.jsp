@@ -118,6 +118,17 @@
 	line-height:50px; 
 	text-align:center; 
 	border-radius: 5px; 
+	border: 1px solid #666666; 
+	text-decoration: none;
+	background: #ffffff;
+	color: #666666;	
+}
+.a3{
+	display:block; 
+	width:150px; 
+	line-height:50px; 
+	text-align:center; 
+	border-radius: 5px; 
 	border: none; 
 	text-decoration: none;
 	background: #ff3333;
@@ -344,8 +355,8 @@
 			</table>
 		</div>
 		<div class="mem-item5">
+			<div><button class="a2" type="submit" id="memberList" data-oper="list">돌아가기</button></div>
 			<div><a class="a1" href='<c:out value="${memberVO.u_id }" />'>수정하기</a></div>
-			<div><button class="a2" type="submit" id="memberList" data-oper="list">돌아가기</button></div>	
 			<div><button class="a3" id="deleteMember" value='<c:out value="${memberVO.u_id }" />' >탈퇴</button></div>
 		</div>	
 	</section>

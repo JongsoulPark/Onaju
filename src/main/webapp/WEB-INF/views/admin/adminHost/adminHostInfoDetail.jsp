@@ -118,6 +118,17 @@
 	line-height:50px; 
 	text-align:center; 
 	border-radius: 5px; 
+	border: 1px solid #666666; 
+	text-decoration: none;
+	background: #ffffff;
+	color: #666666;	
+}
+#hostInfoDelete{
+	display:block; 
+	width:150px; 
+	line-height:50px; 
+	text-align:center; 
+	border-radius: 5px; 
 	border: none; 
 	text-decoration: none;
 	background: #ff3333;

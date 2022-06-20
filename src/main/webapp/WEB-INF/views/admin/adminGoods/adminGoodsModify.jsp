@@ -176,10 +176,10 @@
 	line-height:50px; 
 	text-align:center; 
 	border-radius: 5px; 
-	border: none; 
+	border: 1px solid #666666; 
 	text-decoration: none;
-	background: #ff3333;
-	color: #ffffff;	
+	background: #ffffff;
+	color: #666666;	
 }
 .styled-table{
 	border-collapse: collapse;
@@ -481,8 +481,8 @@ $(document).ready(function(){
 			
 		</div>
 		<div class="mem-item5">
-			<div><button id="updateGoods" type="submit" class="a1" data-oper="modify">수정하기</button></div>
 			<div><button class="a2" data-oper="detail" value='<c:out value="${roomDetail.room_code }" />'>돌아가기</a></div>
+			<div><button id="updateGoods" type="submit" class="a1" data-oper="modify">수정하기</button></div>
 		</div>
 		<input type="hidden" name="pageNum" value="${cri.pageNum }" />
 		<input type="hidden" name="amount" value="${cri.amount }" />

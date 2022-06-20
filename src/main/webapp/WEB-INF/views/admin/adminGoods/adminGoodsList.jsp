@@ -332,10 +332,7 @@
 		</form>
 	</div>
 </section>
-<div class="mem-item5">
-	<div><a class="a1" href="#">상품등록</a></div>
-	<div><input class="a2" type="submit" value="선택삭제"></div>
-</div>
+
 <script>
 $.datepicker.regional['ko'] = {
 	      closeText: '닫기',
