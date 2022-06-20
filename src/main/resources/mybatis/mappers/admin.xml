@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.admin">
+
+	<resultMap id="adminResult" type="adminVO">
+      	<result property="a_id" column="a_id" />
+      	<result property="a_pw" column="a_pw" />
+      	<result property="a_name" column="a_name" />
+      	<result property="a_birth" column="a_birth" />
+      	<result property="a_grade" column="a_grade" />     
+      	<result property="a_phone" column="a_phone" />
+      	<result property="a_email1" column="a_email1" />
+      	<result property="a_email2" column="a_email2" />
+      	<result property="del_yn" column="del_yn" />
+	</resultMap>
+	<!-- 로그인 -->
+	<select id="login" resultMap="adminResult"  parameterType="String"  >
+	    <![CDATA[
+				select * from a_adminmember  where a_id=#{a_id} and a_pw=#{a_pw} 
+		]]>
+	</select>
+	
+	<!-- 관리자 회원가입 -->
+	<select id="insertNewAdmin" parameterType="String"  >
+	    <![CDATA[
+				insert into a_adminmember(a_id, a_pw, a_name, a_birth, a_phone, a_email1, a_email2) values(#{a_id}, #{a_pw}, #{a_name}, #{a_birth}, #{a_phone}, #{a_email1}, #{a_email2})
+		]]>
+	</select>
+	
+	<!-- 관리자 아이디 유효성 검사 -->
+	<select id="selectOverlappedID" parameterType="String" resultType="String">
+	   <![CDATA[  select case count(*) when 1 then  'true'  when 0 then  'false' end
+	   from a_adminmember
+	   where a_id = #{id}
+	   		]]>
+	</select>
+	
+	<!-- 관리자 리스트 -->
+	<select id="selectAllAdminList" resultType="map"   parameterType="map"  >
+		 <![CDATA[
+		 select * 
+		 from (
+		 select (@ROWNUM := @ROWNUM + 1) rn, c.* 
+		 from (
+		 select * 
+		 from a_adminmember 
+		 where a_id is not null
+		 ]]>
+		 <if test="a_del_yn != '' and a_del_yn != null">
+		 and del_yn = #{a_del_yn}
+		 </if>
+		 <if test="a_id2 != '' and a_id2 != null">
+		 and a_id = like concat('%',#{a_id2},'%')
+		 </if>
+		 <if test="a_name2 != '' and a_name2 != null">
+		 and a_name like concat('%',#{a_name2},'%')
+		 </if><if test="join_startDate != '' and join_startDate != null">
+		 and joinDate >= #{join_startDate}
+		 </if>
+		 <if test="join_endDate != '' and join_endDate != null">
+		 <![CDATA[
+		 and joinDate <= #{join_endDate}
+		  ]]>
+		 </if>
+		 <![CDATA[
+		  order by joinDate desc
+		 )c,(select @ROWNUM := 0)s)b  
+		 where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}			        
+		 ]]>
+	</select>
+	
+	
+	<select id="selectAllAdminTotal" resultType="java.lang.Integer">
+   		<![CDATA[
+        SELECT count(*) total FROM a_adminmember where a_id is not null
+    	]]>
+    	  <if test="a_del_yn != '' and a_del_yn != null">
+		 and del_yn = #{a_del_yn}
+		 </if>
+		 <if test="a_id2 != '' and a_id2 != null">
+		 and a_id = like concat('%',#{a_id2},'%')
+		 </if>
+		 <if test="a_name2 != '' and a_name2 != null">
+		 and a_name like concat('%',#{a_name2},'%')
+		 </if><if test="join_startDate != '' and join_startDate != null">
+		 and joinDate >= #{join_startDate}
+		 </if>
+		 <if test="join_endDate != '' and join_endDate != null">
+		 <![CDATA[
+		 and joinDate <= #{join_endDate}
+		  ]]>
+		 </if>
+	</select>
+	
+	<select id="selectLoginId" parameterType="String" resultType="java.lang.Integer">
+	 select count(*) from a_adminmember where a_id = #{a_id}
+	</select>
+	<select id="selectLoginPw" parameterType="map" resultType="java.lang.Integer">
+	select count(*) from a_adminmember where a_id = #{a_id} and a_pw = #{a_pw}
+	</select>
+
+	
+	
+	<!-- 관리자 상세정보 -->
+	<select id="selectAdminDetail" resultType="map"   parameterType="String"  >
+		 select * from a_adminmember where a_id = #{a_id}					        
+	</select>
+	
+	<update id="selectUpdateAdmin">
+		update a_adminmember
+		<set>
+		<if test="del_yn != '' and del_yn != null">
+		del_yn =  #{del_yn},
+		</if>
+		<if test="a_name != '' and a_name != null">
+		a_name =  #{a_name},
+		</if>
+		<if test="a_email1 != '' and a_email1 != null">
+		a_email1 =  #{a_email1},
+		</if>
+		<if test="a_email2 != '' and a_email2 != null">
+		a_email2 =  #{a_email2},
+		</if>
+		<if test="a_birth != '' and a_birth != null">
+		a_birth =  #{a_birth},
+		</if>
+		<if test="a_phone != '' and a_phone != null">
+		a_phone =  #{a_phone},
+		</if>
+		</set>
+		where a_id = #{a_id}
+	</update>
+	
+</mapper>
+
