@@ -224,7 +224,7 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	}
 	
 	
-
+	// 공지사항 수정 화면 폼
 	@Override
 	@RequestMapping(value = "/admin/noticeModify.do", method = RequestMethod.GET)
 	public ModelAndView noticeModify(String notice_code, @ModelAttribute("cri") Criteria cri) throws Exception {
@@ -235,50 +235,8 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		return mav;
 	}
 	
-
-	@Override
-	@RequestMapping(value = "/admin/enquireBoard.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView enquireBoardList(Criteria cri) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		
-		int total = adminBoardService.enquireListTotal(cri);
-		
-		List<Map<String, Object>> enquireList = adminBoardService.enquireBoardList(cri);
-		mav.addObject("enquireList", enquireList);
-		mav.addObject("pageMaker", new PageVO(cri, total));
-		return mav;
-	}
-
-	@Override
-	@RequestMapping(value = "/admin/enquireDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView enquireBoardDetail(@RequestParam("enquire_NO") String enquire_NO, @ModelAttribute("cri") Criteria cri) throws Exception {
-		
-		adminBoardService.updateHit(enquire_NO);
-		
-		ModelAndView mav = new ModelAndView();
-		List<Map<String, Object>> enquireDetail = adminBoardService.enquireBoardDetail(enquire_NO);
-		
-		mav.addObject("enquireDetail", enquireDetail);
-		return mav;
-	}
 	
-	@Override
-	@RequestMapping(value = "admin/newReply.do", method = RequestMethod.POST)
-	public ResponseEntity<String> insertEnquireReply(@ModelAttribute("replyVO") AdminEnquireReplyVO replyVO, HttpServletRequest request, HttpServletResponse response){
-		HttpSession session = request.getSession();
-		adminVO = (AdminVO)session.getAttribute("adminInfo");
-		replyVO.setA_id(adminVO.getA_id());
-		int insertReply = adminBoardService.insertEnquireReply(replyVO);
-		return insertReply == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
-	@Override
-	@RequestMapping(value = "/admin/enquireReplyList.do", method = {RequestMethod.GET, RequestMethod.POST} )
-	public ResponseEntity<List<Map<String, Object>>> ajaxcommentList(AdminEnquireReplyVO replyVO){
-		List<Map<String, Object>> replysList = adminBoardService.enquireReplyDetail(replyVO);
-		return new ResponseEntity<>(replysList, HttpStatus.OK);
-	}
-
+	// 공지사항 수정 화면 내 이미지 삭제
 	@Override
 	@RequestMapping(value = "/admin/imgDelete.do", method = RequestMethod.POST)
 	public ResponseEntity<String> imgDelete(@RequestParam Map<String, Object> delet_img) {
@@ -296,18 +254,21 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		}
 	}
 	
+	
+	// 공지사항 수정 메서드 
+	//임시방편 하드코딩! 이미지 insert부분은 parseFileInfo 메서드와 통합하여 코드 줄일 것 (결합도? 낮출것)
 	@Override
 	@RequestMapping(value = "/admin/updateNotice.do", method = RequestMethod.POST)
-	public ModelAndView updateNotice(@RequestParam Map<String, Object> noticeMap, MultipartFile file, @ModelAttribute Criteria cri) throws Exception {
+	public ModelAndView updateNotice(@RequestParam Map<String, Object> map, MultipartFile file, @ModelAttribute Criteria cri) throws Exception {
 		
 		ModelAndView mav = new ModelAndView("redirect:/admin/noticeList.do");
 		
-		String Save_File_Name = (String)noticeMap.get("Save_File_Name");
+		String Save_File_Name = (String)map.get("Save_File_Name");
 		
 		Map<String, Object> imgFile = new HashMap<String, Object>();
-		String noticeCode = (String)noticeMap.get("notice_code");
-		String img_code = (String)noticeMap.get("img_code");
-		String creID = (String)noticeMap.get("a_id");
+		String noticeCode = (String)map.get("notice_code");
+		String img_code = (String)map.get("img_code");
+		String creID = (String)map.get("a_id");
 		
 		if(!Save_File_Name.isEmpty()) { //기존 이미지 파일 존재 유무
 			if(file.getOriginalFilename() != "") { // 새로운 이미지 파일 존재 유무
@@ -330,11 +291,11 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 				imgFile.put("Save_File_Name", saveFileName);
 					
 				adminBoardService.updateImgFile(imgFile);
-				adminBoardService.updateNotice(noticeMap);	
+				adminBoardService.updateNotice(map);	
 			}else { // 새로운 이미지 파일이 존재 하지 않을 시
-				adminBoardService.updateNotice(noticeMap);
+				adminBoardService.updateNotice(map);
 			}
-			
+		
 		}else { // 기존 이미자 파일이 존재 하지 않을 시
 			String orgFileName = file.getOriginalFilename();
 			String orgFileExtension = orgFileName.substring(orgFileName.lastIndexOf("."));
@@ -352,11 +313,13 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 			imgFile.put("File_Size", saveFileSize);
 			
 			adminBoardService.insertImgFile(imgFile);
-			adminBoardService.updateNotice(noticeMap);	
+			adminBoardService.updateNotice(map);	
 		}	
 		return mav;
 	}
 	
+	
+	// 공지사항 삭제
 	@Override
 	@RequestMapping(value = "/admin/deleteNotice.do", method = RequestMethod.POST)
 	public ModelAndView deleteNotice(@RequestParam String notice_code, @ModelAttribute("cri") Criteria cri) throws Exception {
@@ -378,7 +341,57 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		
 		return mav;
 	}
-
+		
+		
+		
+		
+	
+	// 1대1 게시판 목록
+	@Override
+	@RequestMapping(value = "/admin/enquireBoard.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView enquireBoardList(Criteria cri) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		int total = adminBoardService.enquireListTotal(cri);
+		
+		List<Map<String, Object>> enquireList = adminBoardService.enquireBoardList(cri);
+		mav.addObject("enquireList", enquireList);
+		mav.addObject("pageMaker", new PageVO(cri, total));
+		return mav;
+	}
+	// 1대1 게시판 상세
+	@Override
+	@RequestMapping(value = "/admin/enquireDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView enquireBoardDetail(@RequestParam("enquire_NO") String enquire_NO, @ModelAttribute("cri") Criteria cri) throws Exception {
+		
+		adminBoardService.updateHit(enquire_NO);
+		
+		ModelAndView mav = new ModelAndView();
+		List<Map<String, Object>> enquireDetail = adminBoardService.enquireBoardDetail(enquire_NO);
+		
+		mav.addObject("enquireDetail", enquireDetail);
+		return mav;
+	}
+	// 1대1 게시판 댓글 등록
+	@Override
+	@RequestMapping(value = "admin/newReply.do", method = RequestMethod.POST)
+	public ResponseEntity<String> insertEnquireReply(@ModelAttribute("replyVO") AdminEnquireReplyVO replyVO, HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		adminVO = (AdminVO)session.getAttribute("adminInfo");
+		replyVO.setA_id(adminVO.getA_id());
+		int insertReply = adminBoardService.insertEnquireReply(replyVO);
+		return insertReply == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	// 1대1 게시판 댓글 목록 호출
+	@Override
+	@RequestMapping(value = "/admin/enquireReplyList.do", method = {RequestMethod.GET, RequestMethod.POST} )
+	public ResponseEntity<List<Map<String, Object>>> ajaxcommentList(AdminEnquireReplyVO replyVO){
+		List<Map<String, Object>> replysList = adminBoardService.enquireReplyDetail(replyVO);
+		return new ResponseEntity<>(replysList, HttpStatus.OK);
+	}
+	
+	
+	// 1대1 게시판 댓글 삭제
 	@Override
 	@RequestMapping(value = "/admin/replyDelete.do" , method = {RequestMethod.GET, RequestMethod.POST})
 	public ResponseEntity<Map<String, Object>> replydelete(@RequestParam Map<String, Object> reMap) {

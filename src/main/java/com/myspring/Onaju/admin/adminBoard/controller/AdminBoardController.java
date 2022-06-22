@@ -41,7 +41,7 @@ public interface AdminBoardController {
 	// 공지사항 수정 화면 내 이미지 삭제
 	public ResponseEntity<String> imgDelete(Map<String, Object> deleteMap);
 	// 공지사항 수정 메서드
-	public ModelAndView updateNotice(Map<String, Object> noticeMap, MultipartFile file, Criteria cri) throws Exception;
+	public ModelAndView updateNotice(Map<String, Object> map, MultipartFile file, Criteria cri) throws Exception;
 	
 	// 공지사항 삭제
 	public ModelAndView deleteNotice(String notice_code, @ModelAttribute("cri") Criteria cri) throws Exception;
