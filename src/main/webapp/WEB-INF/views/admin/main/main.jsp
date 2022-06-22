@@ -368,7 +368,7 @@ border: 0;
                         					<li class="widget-49-meeting-item"><span>회원 정보 수정 및 삭제</span></li>
                     					</ol>
                     					<div class="widget-49-meeting-action">
-                        					<a href="#" class="btn btn-sm btn-flash-border-primary">이동 하기</a>
+                        					<a href="${contextPath }/admin/memberList.do" class="btn btn-sm btn-flash-border-primary">이동 하기</a>
                     					</div>
                 					</div>
             					</div>
@@ -397,7 +397,7 @@ border: 0;
                         <li class="widget-49-meeting-item"><span>사업주 매출/정산 정보</span></li>
                     </ol>
                     <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">이동 하기</a>
+                        <a href="${contextPath }/admin/hostList.do" class="btn btn-sm btn-flash-border-warning">이동 하기</a>
                     </div>
                 </div>
             </div>
@@ -426,7 +426,7 @@ border: 0;
                         <li class="widget-49-meeting-item"><span>상품 정보 수정 및 삭제</span></li>
                     </ol>
                     <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">이동 하기</a>
+                        <a href="${contextPath }/admin/goodsList.do" class="btn btn-sm btn-flash-border-warning">이동 하기</a>
                     </div>
                 </div>
             </div>
@@ -456,42 +456,13 @@ border: 0;
                         <li class="widget-49-meeting-item"><span>주문 정보 수정 및 삭제</span></li>
                     </ol>
                     <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">이동 하기</a>
+                        <a href="${contextPath }/admin/orderList.do" class="btn btn-sm btn-flash-border-warning">이동 하기</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    
-    <div style="width: 275px; height: 220px; display: inline-block; float: left; margin: 5px 5px 5px 5px;">
-        <div class="card card-margin" style="margin-bottom: 1.875rem;">
-            <div class="card-header no-border">
-                <h5 class="card-title">정산/통계 관리</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div class="widget-49-date-info">
-                            <i style="color:#80EAFF"  class="fa-solid fa-chart-simple"></i>
-                        </div>
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">오나주 정산/통계 관리</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
-                    </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>오나주 매출 통계</span></li>
-                        <li class="widget-49-meeting-item"><span>오나주 가입자 추이</span></li>
-                        <li class="widget-49-meeting-item"><span>오나주 주문 추이</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">이동 하기</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     
     <div style="width: 275px; height: 220px; display: inline-block; float: left; margin: 5px 5px 5px 5px;">
         <div class="card card-margin" style="margin-bottom: 1.875rem;">
@@ -512,48 +483,17 @@ border: 0;
                     <ol class="widget-49-meeting-points">
                         <li class="widget-49-meeting-item"><span>공지사항 리스트</span></li>
                         <li class="widget-49-meeting-item"><span>고객센터 리스트</span></li>
-                        <li class="widget-49-meeting-item"><span>공지사항, 고객센터 정보 수정 및 삭제</span></li>
+                        <li class="widget-49-meeting-item"><span>공지사항, 고객센터 수정 및 삭제</span></li>
                     </ol>
                     <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">이동 하기</a>
+                        <a href="${contextPath }/admin/noticeList.do" class="btn btn-sm btn-flash-border-warning">이동 하기</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <div style="width: 275px; height: 220px; display: inline-block; float: left; margin: 5px 5px 5px 5px;">
-        <div class="card card-margin" style="margin-bottom: 1.875rem;">
-            <div class="card-header no-border">
-                <h5 class="card-title">디자인 관리</h5>
-            </div>
-            <div class="card-body pt-0">
-                <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                        <div style="background-color:#FCFFE3" class="widget-49-date-success">
-                            <i style="color:#999900" class="fa-solid fa-palette"></i>
-                        </div>`
-                        <div class="widget-49-meeting-info">
-                            <span class="widget-49-pro-title">오나주 디자인 관리</span>
-                            <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                        </div>
-                    </div>
-                    <ol class="widget-49-meeting-points">
-                        <li class="widget-49-meeting-item"><span>디자인 정보</span></li>
-                        <li class="widget-49-meeting-item"><span>배너 정보</span></li>
-                        <li class="widget-49-meeting-item"><span>팝업 정보</span></li>
-                    </ol>
-                    <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-warning">이동 하기</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    
-    
-    
+   
     <div style="width: 275px; height: 220px; display: inline-block; float: left; margin: 5px 5px 5px 5px;">
         <div class="card card-margin" style="margin-bottom: 1.875rem;">
             <div class="card-header no-border">
@@ -576,7 +516,7 @@ border: 0;
                         <li class="widget-49-meeting-item"><span>직원 정보 수정 및 삭제</span></li>
                     </ol>
                     <div class="widget-49-meeting-action">
-                        <a href="#" class="btn btn-sm btn-flash-border-success">이동 하기</a>
+                        <a href="${contextPath }/admin/adminList.do" class="btn btn-sm btn-flash-border-success">이동 하기</a>
                     </div>
                 </div>
             </div>

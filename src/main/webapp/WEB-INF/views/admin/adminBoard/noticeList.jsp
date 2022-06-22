@@ -299,7 +299,7 @@
 </section>
 <div class="noticeBoard-row-2">
 	<div><a class="a1" href="${contextPath}/admin/noticeForm.do">글쓰기</a></div>
-	<div><input class="a2" type="submit" value="선택삭제"></div>
+	
 </div>
 
 <script>

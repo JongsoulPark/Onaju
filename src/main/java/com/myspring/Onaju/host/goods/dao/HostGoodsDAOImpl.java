@@ -172,6 +172,7 @@ public class HostGoodsDAOImpl implements HostGoodsDAO{
 		sqlSession.delete("mapper.hostGoods.deleteHostGoods",room_code);
 	}
 
+
 	
 	
 }

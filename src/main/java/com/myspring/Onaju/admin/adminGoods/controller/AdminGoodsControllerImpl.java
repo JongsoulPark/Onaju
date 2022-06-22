@@ -1,8 +1,11 @@
 package com.myspring.Onaju.admin.adminGoods.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,7 +30,17 @@ public class AdminGoodsControllerImpl implements AdminGoodsController {
 	
 	@Override
 	@RequestMapping(value = "/admin/goodsList.do", method = { RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView roomsList(Criteria cri) {
+	public ModelAndView roomsList(Criteria cri) throws Exception {
+		
+		if(cri.getJoin_endDate() != "" && cri.getJoin_endDate() != null) {
+			String endDate = cri.getJoin_endDate();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = format.parse(endDate);
+			Date plus_date = new Date(date.getTime() + (1000*60*60*24));
+			String join_endDate = DateFormatUtils.format(plus_date, "yyyy-MM-dd");
+		
+			cri.setJoin_endDate(join_endDate);
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		

@@ -79,7 +79,7 @@
 		<div class="onajuMainName"><div><a href="${contextPath }/admin/main.do"><h3 style="color:#D43584;">오나주</h3><h3>관리자 페이지</h3></a></div></div>
 		<div class="onaju-memberbox">
 			<div class="onaju-member"><div><button>${adminInfo.a_name }님</button></div></div>
-			<div class="onaju-logOut"><div><a href="${contextPath }/admin/loginForm.do">로그아웃</a></div></div>
+			<div class="onaju-logOut"><div><a href="${contextPath }/admin/LogOut.do">로그아웃</a></div></div>
         </div>
 	</div>
 </header>

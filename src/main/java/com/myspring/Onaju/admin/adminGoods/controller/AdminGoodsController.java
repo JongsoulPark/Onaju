@@ -9,7 +9,7 @@ import com.myspring.Onaju.admin.adminCommon.paging.Criteria;
 import com.myspring.Onaju.admin.adminGoods.vo.AdminHostRoomVO;
 
 public interface AdminGoodsController {
-	public ModelAndView roomsList(Criteria cri);
+	public ModelAndView roomsList(Criteria cri) throws Exception;
 	public ModelAndView roomDetail(@RequestParam("room_code")String room_code, @ModelAttribute("cri") Criteria cri) throws Exception;
 	public ModelAndView roomModify(@RequestParam("room_code")String room_code, @ModelAttribute("cri") Criteria cri) throws Exception;
 	public String roomUpdate(AdminHostRoomVO roomVO, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr);

@@ -249,7 +249,7 @@
 				<li class="paginate_button next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
 			</c:if>
 		</ul>
-		<form id="actionForm" action="${contextPath }/admin/noticeList.do" method="get">
+		<form id="actionForm" action="${contextPath }/host/noticeList.do" method="get">
 			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }" />
 			<input type="hidden" name="amount" value="${pageMaker.cri.amount }" />
 			<input type="hidden" name="join_startDate" value='<c:out value="${pageMaker.cri.join_startDate }" />'>

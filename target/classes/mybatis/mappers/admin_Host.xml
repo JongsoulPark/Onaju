@@ -429,11 +429,11 @@
 	select * from h_host where del_yn = 'Y'
 	</select>
 	
-	<select id="selectRetireHostInfo">
+	<select id="selectRetireHostInfo" resultType="adminHostInfoVO">
 	select * from h_host_info where del_yn = 'Y'
 	</select>
 	
-	<delete id="deleteRetireHost">
+	<delete id="deleteRetireHost" parameterType="String">
 	delete from h_host where h_id = #{h_id}
 	</delete>
 	

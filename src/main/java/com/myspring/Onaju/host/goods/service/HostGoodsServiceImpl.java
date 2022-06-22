@@ -164,4 +164,5 @@ public class HostGoodsServiceImpl implements HostGoodsService{
 		goodsDAO.deleteHostGoods(room_code);
 	}
 
+
 }

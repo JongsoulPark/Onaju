@@ -129,17 +129,17 @@
 	
 	<task:scheduled-tasks>
 
-		<task:scheduled ref="schedule" method="memberSchedule" cron="0/5 * * 5  * ?"/>
-		<task:scheduled ref="schedule" method="listMemberScheduler" cron="0/5 * * 5 * ?"/>
+		<task:scheduled ref="schedule" method="memberSchedule" cron="0/10 * * * * ?"/>
+		<task:scheduled ref="schedule" method="listMemberScheduler" cron="0/10 * * * * ?"/>
 
-		<task:scheduled ref="schedule" method="memberSchedule" cron="0/5 * 5 * * ?"/>
-		<task:scheduled ref="schedule" method="listHostScheduler" cron="0/5 * 5 * * ?"/>
-
-		<task:scheduled ref="schedule" method="memberSchedule" cron="0/5 * 5 * * ?"/>
-		<task:scheduled ref="schedule" method="listHostInfoScheduler" cron="0/5 * 5 * * ?"/>
 		
-		<task:scheduled ref="schedule" method="memberSchedule" cron="0/5 * 5 * * ?"/>
-		<task:scheduled ref="schedule" method="listRoomScheduler" cron="0/5 * 5 * * ?"/>
+		<task:scheduled ref="schedule" method="listHostScheduler" cron="0/10 * * * * ?"/>
+
+		
+		<task:scheduled ref="schedule" method="listHostInfoScheduler" cron="0/10 * * * * ?"/>
+		
+	
+		<task:scheduled ref="schedule" method="listRoomScheduler" cron="0/10 * * * * ?"/>
 		
 	</task:scheduled-tasks> 
     

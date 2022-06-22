@@ -584,7 +584,7 @@ border-top: 2px solid #CCCCCC;
 
 						<li><a id="hb_a_main"
 							href="${contextPath}/board/boardArticle.do"><img
-								src="${contextPath }/resources/image/banner1.png"
+								src="${contextPath }/resources/image/banner2.jpg"
 								style="width: 100%; height: 100%; border-radius: 10px;"></a></li>
 								
 						<li><a id="hb_a_main"
@@ -596,7 +596,7 @@ border-top: 2px solid #CCCCCC;
 								
 						<li><a id="hb_a_main"
 							href="${contextPath}/board/boardArticle.do"><img
-								src="${contextPath }/resources/image/banner1.png"
+								src="${contextPath }/resources/image/banner2.jpg"
 								style="width: 100%; height: 100%; border-radius: 10px;"></a></li>
 								
 								

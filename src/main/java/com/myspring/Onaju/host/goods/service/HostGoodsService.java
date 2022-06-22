@@ -36,5 +36,4 @@ public interface HostGoodsService {
 	public void removeHostGoodsImage(int roomImage_NO) throws Exception;
 	public void deleteHostGoodsAllImage(int room_code) throws Exception;
 	public void deleteHostGoods(int room_code) throws Exception;
-	
 }

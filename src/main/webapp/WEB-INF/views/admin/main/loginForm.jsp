@@ -213,7 +213,7 @@ button:hover{
             <div class="wrap-login">
 
                 <div class="login-pic">
-                    <img src="../resources/assets/img/ohnaju.png" alt="IMG">
+                    <img src="../resources/image/onajulogo.png" alt="IMG">
                 </div>
 
                 <form class="login_form" id="login-form" name="login_form" action="${contextPath }/admin/adminLogin.do" method="post" >
@@ -238,10 +238,7 @@ button:hover{
                         <button class="login-form-btn" type="submit" >Login</button>
                     </div>
 
-                  <div class="text-center p-t-1">
-                      <span class="txt1">Forgot</span>
-                      <a href="#" class="txt2"> 아이디 / 비밀번호를 잊어버리셨습니까? ?</a>
-                  </div>
+                 
                   <div class="text-center p-t-2">
                       <a href="${contextPath }/admin/joinForm.do" class="txt2"> 회원가입 하기 <i class="fa fa-long-arrow-right " aria-hidden="true"></i></a>
                   </div>

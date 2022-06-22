@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.myspring.Onaju.admin.adminCommon.scheduler.dao.ScheduleDAO;
 import com.myspring.Onaju.admin.adminGoods.vo.AdminHostRoomVO;
-import com.myspring.Onaju.host.hostInfo.vo.HostInfoVO;
-import com.myspring.Onaju.host.vo.HostVO;
+import com.myspring.Onaju.admin.adminHost.vo.AdminHostInfoVO;
+import com.myspring.Onaju.admin.adminHost.vo.AdminHostVO;
 import com.myspring.Onaju.member.vo.MemberVO;
 
 
@@ -30,7 +30,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 
 	@Override
-	public List<HostVO> listHostScheduler() throws Exception {
+	public List<AdminHostVO> listHostScheduler() throws Exception {
 		return scheduleDAO.selectRetireHost();
 	}
 
@@ -40,7 +40,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 	}
 
 	@Override
-	public List<HostInfoVO> listHostInfoScheduler() throws Exception {
+	public List<AdminHostInfoVO> listHostInfoScheduler() throws Exception {
 		return scheduleDAO.selectRetireHostInfo();
 	}
 

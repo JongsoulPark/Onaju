@@ -156,15 +156,11 @@
 				</div>
 				<div class="notice-row">
 					<div class="notice-row-col1"><div>게시 기간</div></div>
-					<div class="notice-row-col3"><div><input type="date" name="notice_startDate">&emsp;~&emsp;<input type="date" name="notice_endDate"></div></div>
+					<div class="notice-row-col3"><div><input type="date" name="notice_startDate" required >&emsp;~&emsp;<input type="date" name="notice_endDate" required ></div></div>
 				</div>
 				<div class="notice-row">
 					<div class="notice-row-col1"><div>이미지 등록</div></div>
 					<div class="notice-row-col3"><div><input type="file" name="file" id="file1" onchange="uploadFile()" /></div></div>
-				</div>
-				<div class="notice-row">
-					<div class="notice-row-col1"><div>첨부 파일</div></div>
-					<div class="notice-row-col3"><div><input type="file"></div></div>
 				</div>
 				<div class="notice-row">
 					<div class="notice-row-col2"><div>내용</div></div>
@@ -184,7 +180,7 @@
 //이미지 유효성 검사
 function uploadFile() {
     var fileVal = $("#file1").val();
-    var maxSize = 1 * 1024 * 1024; // 10MB
+    var maxSize = 5 * 1024 * 1024; // 5MB
     var fileSize = $("#file1")[0].files[0].size;
     
     //이미지 확장자 유효성 검사
@@ -200,7 +196,7 @@ function uploadFile() {
     //이미지 크기 유효성 검사
     if(fileSize > maxSize){
     	$("#file1").val("");
-        alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다."); 
+        alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다."); 
         return;
     };
     

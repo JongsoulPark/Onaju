@@ -416,6 +416,7 @@ $(document).ready(function(){
 	var operForm = $("#operForm");
 	
 	$("#goodsdelete").on("click", function(e){
+		alert("삭제삭제");
 		e.preventDefault();
 		operForm.append("<input type='hidden' name='room_code' value='"+$(this).attr("value")+"'>");
 		operForm.attr("action","${contextPath}/admin/goodsDelete.do").attr("method","post");

@@ -114,6 +114,14 @@
 	border: 1px solid #E6E6E6; 
 	text-decoration: none;	
 }
+.a1{
+	width: 150px; 
+	height: 50px; 
+	border-radius: 5px; 
+	border: none; 
+	background-color: #000033; 
+	color: white;
+	}
 </style>
 </head>
 <body>

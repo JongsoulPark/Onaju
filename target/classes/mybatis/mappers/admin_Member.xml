@@ -34,34 +34,6 @@
       	<result property="del_yn" column="del_yn" />
 	</resultMap>
 	
-<!-- 		<resultMap id="schMemResult" type="schMemVO">
-      	<result property="u_id" column="u_id" />
-      	<result property="u_pw" column="u_pw" />
-      	<result property="u_name" column="u_name" />
-      	<result property="u_birth_y" column="u_birth_y" />
-      	<result property="u_birth_m" column="u_birth_m" />
-      	<result property="u_birth_d" column="u_birth_d" />
-      	<result property="u_gender" column="u_gender" />
-      	<result property="u_phone" column="u_phone" />
-      	<result property="u_email1" column="u_email1" />
-      	<result property="u_email2" column="u_email2" />
-      	<result property="zipcode" column="zipcode" />
-      	<result property="roadAddress" column="roadAddress" />
-      	<result property="numberAddress" column="numberAddress" />
-      	<result property="restAddress" column="restAddress" />
-      	<result property="u_point" column="u_point" />
-      	<result property="u_grade" column="u_grade" />
-      	<result property="proposer" column="proposer" />
-      	<result property="u_imageName" column="u_imageName" />
-      	<result property="u_imageType" column="u_imageType" />
-      	<result property="u_agree_1" column="u_agree_1" />
-      	<result property="u_agree_2" column="u_agree_2" />
-      	<result property="u_agree_3" column="u_agree_3" />
-      	<result property="u_service_01" column="u_service_01" />
-      	<result property="u_service_02" column="u_service_02" />
-      	<result property="joinDate" column="joinDate" />
-      	<result property="del_yn" column="del_yn" />
-	</resultMap> -->
 	
 	
 	<select id="selectAllMemberList" resultType="hashmap"   parameterType="hashmap"  >
@@ -218,13 +190,13 @@
 		limit #{pageStart}, #{perPageNum}
 	</select>
 	
-	<!-- <select id="selectRetireMembers" resultMap="schMemResult">
+	<select id="selectRetireMembers" resultType="memberVO">
 		select * from u_member where del_yn = 'Y'
 	</select>
 	
-	<delete id="deleteRetireMember" parameterType="schMemVO">
+	<delete id="deleteRetireMember" parameterType="String">
 		delete from u_member where u_id = #{u_id}
-	</delete> -->
+	</delete>
 	
 	
 	<update id="selectMemberDelete">

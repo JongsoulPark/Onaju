@@ -15,7 +15,7 @@
 		 where notice_code > 0
 		 ]]>
 		and post_check = 'Y'
-		and post_chennel = 'host'
+		and post_chennel != 'user'
 		 <![CDATA[
 		 order by writeDate desc
 		 )c,(select @ROWNUM := 0)s)b  
@@ -25,7 +25,7 @@
 
 <select id="selectAllHostBoardListTotal" resultType="java.lang.Integer">
    		
-        SELECT count(*) FROM a_noticeboard where notice_code > 0 and post_check = 'Y' and post_chennel = 'host' and post_chennel = 'all'
+        SELECT count(*) FROM a_noticeboard where notice_code > 0 and post_check = 'Y' and post_chennel != 'user'
     	
 </select>
 

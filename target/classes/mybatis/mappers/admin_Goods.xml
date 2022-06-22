@@ -421,7 +421,7 @@
 		update h_room set del_yn = 'Y' where room_code = #{room_code}
 	</update>
 	
-	<select id="selectRetireRoom">
+	<select id="selectRetireRoom" resultType="adminHostRoomVO">
 	select * from h_room where del_yn = 'Y'
 	</select>
 	

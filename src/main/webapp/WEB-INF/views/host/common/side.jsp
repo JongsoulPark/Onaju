@@ -134,40 +134,24 @@ request.setCharacterEncoding("UTF-8");
  				<li class="ohnaju-li"><a href="${contextPath }/host/community/cmnAticleForm1.do">Life Style 글 등록</a></li>
  			</ul>
  		</li>
- 		<li class="ohnaju-li"><a href="#" class="ohnaju-fourth-btn"><i style="color:#edbc40" class="fa-solid fa-credit-card"></i>&emsp;주문 관리</a>
- 			<ul class="ohnaju-fourth-show">
- 				<li class="ohnaju-li"><a href="${contextPath }/host/reservation/hostReservationList.do">예약 정보 목록</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/reservation/approveReservationList.do">승인 목록</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/reservation/cancelReservationList.do">취소 및 환불 목록</a></li>
- 			</ul>
- 		</li> 		
  		<li class="ohnaju-li"><a href="#" class="ohnaju-fifth-btn"><i style="color:#edbc40"  class="fa-solid fa-children"></i>&emsp;매출 관리</a>
  			<ul class="ohnaju-fifth-show">
  				<li class="ohnaju-li"><a href="${contextPath }/host/money/hostSalesAllList.do">매출 내역</a></li>
  				
  			</ul>
  		</li>
+ 		<li class="ohnaju-li"><a href="#" class="ohnaju-fourth-btn"><i style="color:#edbc40" class="fa-solid fa-credit-card"></i>&emsp;주문 관리</a>
+ 			<ul class="ohnaju-fourth-show">
+ 				<li class="ohnaju-li"><a href="${contextPath }/host/reservation/hostReservationList.do">예약 정보 목록</a></li>
+ 				<li class="ohnaju-li"><a href="${contextPath }/host/reservation/approveReservationList.do">승인 목록</a></li>
+ 			</ul>
+ 		</li> 		
  		<li class="ohnaju-li"><a href="#" class="ohnaju-fifth-btn"><i style="color:#edbc40"  class="fa-solid fa-children"></i>&emsp;공지사항</a>
  			<ul class="ohnaju-fifth-show">
  				<li class="ohnaju-li"><a href="${contextPath }/host/noticeList.do">공지사항</a></li>
  				
  			</ul>
  		</li> 	
- 		<%-- <li class="ohnaju-li"><a href="#" class="ohnaju-sixth-btn"><i style="color:#edbc40" class="fa-solid fa-building-user"></i>&emsp;고객 관리</a>
- 			<ul class="ohnaju-sixth-show">
- 				<li class="ohnaju-li"><a href="${contextPath }/host/management/reviewList.do">리뷰 관리</a></li>
-
- 			</ul>
- 		</li>
- 		
- 		<li class="ohnaju-li"><a href="#" class="ohnaju-seventh-btn"><i style="color:#edbc40" class="fa-solid fa-paste"></i>&emsp;고객 센터</a>
- 			<ul class="ohnaju-seventh-show">
- 				<li class="ohnaju-li"><a href="${contextPath }/host/center/noticeBoard.do">공지사항</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/center/markRequest.do">인증마크 신청</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/center/qnaList.do">관리자 문의</a></li>
- 				<li class="ohnaju-li"><a href="${contextPath }/host/center/dropOut.do">호스트 탈퇴</a></li>
- 			</ul>
- 		</li> 		 --%>
  	</ul>
 </nav>
 <script>

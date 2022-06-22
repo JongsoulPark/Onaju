@@ -99,5 +99,14 @@ import com.myspring.Onaju.admin.adminMain.service.AdminMainService;
 		String result = adminMainService.adminOverlapped(id);
 		resEntity =new ResponseEntity<String>(result, HttpStatus.OK);
 		return resEntity;	
+	}
+
+	@Override
+	@RequestMapping(value = "/admin/LogOut.do", method = RequestMethod.GET)
+	public String adminLogOut(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("adminIfo");
+		session.invalidate();
+		return "redirect:/admin/loginForm.do";
 	}	
 }

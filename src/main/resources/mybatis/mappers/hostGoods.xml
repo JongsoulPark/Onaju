@@ -653,6 +653,5 @@
 	  delete from h_room
 	  where room_code=#{room_code}
 	</delete>
-	
    
 </mapper>

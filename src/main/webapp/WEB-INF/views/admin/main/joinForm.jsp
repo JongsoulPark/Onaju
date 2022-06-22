@@ -128,6 +128,13 @@ section{
 	color: white;
 	text-decoration: none;
 	margin: 3px 3px 3px 3px;
+}
+
+.onajulogo{
+	width: 480px;
+	height: 600px;
+	display: flex;
+	align-items:center;
 }	
 </style>
 </head>
@@ -136,22 +143,22 @@ section{
 	<form name="joinAdminForm" action="${contextPath }/admin/joinAdmin.do" method="post">
 		<div class="loginForm-con">
 			<div class="loginForm-con-chil">
-				<div><img src="../resources/assets/img/ohnaju.png" alt="사진"></div>
+				<div class="onajulogo"><img src="../resources/image/onajulogo.png" alt="사진"></div>
 			</div>
 			<div class="loginForm-con-chil">
 				<div class="loginForm-con-chil-box1"><div><h2>관리자 회원 가입</h2></div></div>
 				<div class="loginForm-con-chil-box2">
 					<div class="loginForm-item1"><div><h4>아이디</h4></div></div>
-					<div class="loginForm-item2"><div><input type="text" name="a_id" id="_id" placeholder="아이디 입력" maxlength="16" /></div><div><button type="button" id="id_check" onclick="fn_overlapped()">체크</button></div></div>
+					<div class="loginForm-item2"><div><input type="text" name="a_id" id="_id" placeholder="아이디 입력" maxlength="16" required /></div><div><button type="button" id="id_check" onclick="fn_overlapped()">체크</button></div></div>
 					
 				</div>
 				<div class="loginForm-con-chil-box2">
 					<div class="loginForm-item1"><div><h4>비밀번호</h4></div></div>
-					<div class="loginForm-item2"><div><input type="password" name="a_pw" id="_pw" placeholder="비밀번호 입력" /></div></div>
+					<div class="loginForm-item2"><div><input type="password" name="a_pw" id="_pw" placeholder="비밀번호 입력" required /></div></div>
 				</div>
 				<div class="loginForm-con-chil-box2">
 					<div class="loginForm-item1"><div><h4>이름</h4></div></div>
-					<div class="loginForm-item2"><div><input type="text" name="a_name" id="_name" placeholder="이름 입력" /></div></div>
+					<div class="loginForm-item2"><div><input type="text" name="a_name" id="_name" placeholder="이름 입력" required /></div></div>
 				</div>
 				<div class="loginForm-con-chil-box2">
 					<div class="loginForm-item1"><div><h4>생년월일</h4></div></div>
@@ -159,12 +166,12 @@ section{
 				</div>
 				<div class="loginForm-con-chil-box2">
 					<div class="loginForm-item1"><div><h4>전화번호</h4></div></div>
-					<div class="loginForm-item2"><div><input type="text" name="a_phone" id="_phone" placeholder="전화번호 입력" /></div></div>
+					<div class="loginForm-item2"><div><input type="text" name="a_phone" id="_phone" placeholder="전화번호 입력" required /></div></div>
 				</div>
 				<div class="loginForm-con-chil-box2">
 					<div class="loginForm-item1"><div><h4>이메일</h4></div></div>
 					<div class="loginForm-item3">
-						<div><input type="text" name="a_email1" id="_email1" placeholder="이메일 입력" /></div>&nbsp;@ &nbsp;
+						<div><input type="text" name="a_email1" id="_email1" placeholder="이메일 입력" required /></div>&nbsp;@ &nbsp;
 						<div>
 						 	<select name="a_email2">
 								<option value="">이메일 선택</option>

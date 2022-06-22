@@ -14,6 +14,7 @@ import com.myspring.Onaju.admin.adminBoard.vo.AdminEnquireReplyVO;
 import com.myspring.Onaju.admin.adminBoard.vo.AdminEnquireVO;
 import com.myspring.Onaju.admin.adminCommon.paging.Criteria;
 import com.myspring.Onaju.admin.adminCommon.paging.PageVO;
+import com.myspring.Onaju.board.cs.service.CSService;
 import com.myspring.Onaju.common.base.BaseController;
 
 @Controller("csController")
@@ -21,7 +22,8 @@ import com.myspring.Onaju.common.base.BaseController;
 public class CSControllerImpl extends BaseController implements CSController{
 	@Autowired
 	AdminBoardService adminBoardService;
-	
+	@Autowired
+	private CSService csService;
 	
 	@Override
 	@RequestMapping(value = "/qnaList.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -38,12 +40,12 @@ public class CSControllerImpl extends BaseController implements CSController{
 	}
 	
 	@Override
-	@RequestMapping(value = "/noticeBoard.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/noticeBoard.do", method = RequestMethod.GET)
 	public ModelAndView noticeBoard(Criteria cri) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		
-		int total = adminBoardService.noticeListTotal(cri);
-		List<Map<String, Object>> noticeList = adminBoardService.noticeList(cri);
+		int total = csService.userNoticeTotal(cri);
+		List<Map<String, Object>> noticeList = csService.userNotice(cri);
 		mav.addObject("noticeList", noticeList);
 		mav.addObject("pageMaker", new PageVO(cri,total));
 		mav.setViewName("/customerService/noticeBoard");
@@ -55,7 +57,7 @@ public class CSControllerImpl extends BaseController implements CSController{
 	public ModelAndView noticeDetail(String notice_code) throws Exception {
 	
 		ModelAndView mav = new ModelAndView("/admin/noticeDetail.do");
-		Map<String, Object> noticeMap = adminBoardService.noticeDetail(notice_code);
+		Map<String, Object> noticeMap = csService.userNoticeDetail(notice_code);
 		mav.addObject("noticeMap", noticeMap);
 		mav.setViewName("/customerService/noticeDetail");
 

@@ -45,5 +45,4 @@ public interface HostGoodsDAO {
 	public void deleteHostGoodsImage(int roomImage_NO) throws DataAccessException;
 	public void deleteHostGoodsAllImage(int room_code) throws DataAccessException;
 	public void deleteHostGoods(int room_code) throws DataAccessException;
-		
 }

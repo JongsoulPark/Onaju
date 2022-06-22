@@ -3,6 +3,8 @@ package com.myspring.Onaju.admin.adminBoard.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +58,17 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	@Override
 	@RequestMapping(value = "/admin/noticeList.do", method = RequestMethod.GET)
 	public ModelAndView adminNoticeList(Criteria cri) throws Exception {		
+		
+		if(cri.getJoin_endDate() != "" && cri.getJoin_endDate() != null) {
+			String endDate = cri.getJoin_endDate();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = format.parse(endDate);
+			Date plus_date = new Date(date.getTime() + (1000*60*60*24));
+			String join_endDate = DateFormatUtils.format(plus_date, "yyyy-MM-dd");
+		
+			cri.setJoin_endDate(join_endDate);
+		}
+		
 		ModelAndView mav = new ModelAndView();
 		
 		int total = adminBoardService.noticeListTotal(cri);
@@ -257,42 +271,39 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		ModelAndView mav = new ModelAndView("redirect:/admin/noticeList.do");
 		
 		String Save_File_Name = (String)noticeMap.get("Save_File_Name");
-		String Org_File_Name = (String)noticeMap.get("Org_File_Name");
 		
 		Map<String, Object> imgFile = new HashMap<String, Object>();
 		String noticeCode = (String)noticeMap.get("notice_code");
 		String img_code = (String)noticeMap.get("img_code");
 		String creID = (String)noticeMap.get("a_id");
-		String DBorgFileName = adminBoardService.Org_File_Name(img_code);
 		
-		if(!Save_File_Name.isEmpty()) {
-			if(Org_File_Name.equals(DBorgFileName)) {
-				adminBoardService.updateNotice(noticeMap);
-			}else {
+		if(!Save_File_Name.isEmpty()) { //기존 이미지 파일 존재 유무
+			if(file.getOriginalFilename() != "") { // 새로운 이미지 파일 존재 유무
 				File filePath = new File(adminUploadPath +"\\"+Save_File_Name);
-				if(filePath.exists()) {
-					filePath.delete();
-			
-					String orgFileName = file.getOriginalFilename();
-					String orgFileExtension = orgFileName.substring(orgFileName.lastIndexOf("."));
-					String saveFileName = UUID.randomUUID().toString().replace("-", "") + orgFileExtension;
-					Long saveFileSize = file.getSize();
+				if(filePath.exists()) filePath.delete();
 					
-					File target = new File(adminUploadPath);	
-					target = new File(adminUploadPath, saveFileName);
-					file.transferTo(target);
+				String orgFileName = file.getOriginalFilename();
+				String orgFileExtension = orgFileName.substring(orgFileName.lastIndexOf("."));
+				String saveFileName = UUID.randomUUID().toString().replace("-", "") + orgFileExtension;
+				Long saveFileSize = file.getSize();
+				
+				File target = new File(adminUploadPath);	
+				target = new File(adminUploadPath, saveFileName);
+				file.transferTo(target);
+				
+				imgFile.put("notice_code", noticeCode);
+				imgFile.put("Org_File_Name", orgFileName);
+				imgFile.put("File_Size", saveFileSize);
+				imgFile.put("img_code", img_code);
+				imgFile.put("Save_File_Name", saveFileName);
 					
-					imgFile.put("notice_code", noticeCode);
-					imgFile.put("Org_File_Name", orgFileName);
-					imgFile.put("File_Size", saveFileSize);
-					imgFile.put("img_code", img_code);
-					imgFile.put("Save_File_Name", saveFileName);
-					
-					adminBoardService.updateImgFile(imgFile);
-					adminBoardService.updateNotice(noticeMap);
-				}
+				adminBoardService.updateImgFile(imgFile);
+				adminBoardService.updateNotice(noticeMap);	
+			}else { // 새로운 이미지 파일이 존재 하지 않을 시
+				adminBoardService.updateNotice(noticeMap);
 			}
-		}else {
+			
+		}else { // 기존 이미자 파일이 존재 하지 않을 시
 			String orgFileName = file.getOriginalFilename();
 			String orgFileExtension = orgFileName.substring(orgFileName.lastIndexOf("."));
 			String saveFileName = UUID.randomUUID().toString().replace("-", "") + orgFileExtension;

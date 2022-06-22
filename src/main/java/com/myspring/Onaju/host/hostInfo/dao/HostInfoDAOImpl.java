@@ -14,7 +14,7 @@ public class HostInfoDAOImpl implements HostInfoDAO {
 	
 	@Override
 	public int selectInsertHostInfo(Map<String, Object> infoMap) {
-		return sqlSession.insert("mapper.host.selectInsertHostInfo", infoMap);
+		return sqlSession.insert("mapper.hostGoods.insertNewHostInfo", infoMap);
 	}
 
 }

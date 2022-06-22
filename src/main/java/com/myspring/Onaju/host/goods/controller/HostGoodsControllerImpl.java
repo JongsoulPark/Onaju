@@ -262,7 +262,7 @@ public class HostGoodsControllerImpl extends BaseController implements HostGoods
 
 	    } catch (Exception e) {
 	    	message = "<script>";
-	    	message += " alert('사업자 수정 실패');";
+	    	message += " alert('사업자 수정 실패');";					
 	    	message += " location.href='" + request.getContextPath() + "/host/goods/hostInfoList.do';";
 	    	message += " </script>";
 	    	e.printStackTrace();

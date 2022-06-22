@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-import org.apache.ibatis.executor.BatchResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,8 @@ import org.springframework.stereotype.Controller;
 
 import com.myspring.Onaju.admin.adminCommon.scheduler.service.ScheduleService;
 import com.myspring.Onaju.admin.adminGoods.vo.AdminHostRoomVO;
-import com.myspring.Onaju.host.hostInfo.vo.HostInfoVO;
-import com.myspring.Onaju.host.vo.HostVO;
+import com.myspring.Onaju.admin.adminHost.vo.AdminHostInfoVO;
+import com.myspring.Onaju.admin.adminHost.vo.AdminHostVO;
 import com.myspring.Onaju.member.vo.MemberVO;
 
 @Controller("schedule")
@@ -23,9 +22,9 @@ public class AdminScheduler {
 	@Autowired
 	private MemberVO schMemVO;
 	@Autowired
-	private HostVO schHostVO;
+	private AdminHostVO schHostVO;
 	@Autowired
-	private HostInfoVO schHostInfoVO;
+	private AdminHostInfoVO schHostInfoVO;
 	@Autowired
 	private AdminHostRoomVO schRoomVO;
 	@Autowired
@@ -62,7 +61,7 @@ public class AdminScheduler {
 		String batchResult = "호스트 접근 성공";
 		
 		try {
-			List<HostVO> hostList = scheduleService.listHostScheduler();
+			List<AdminHostVO> hostList = scheduleService.listHostScheduler();
 			if(hostList != null) {
 				for(int i = 0; i < hostList.size(); i++) {
 					schHostVO = hostList.get(i);
@@ -74,14 +73,14 @@ public class AdminScheduler {
 			batchResult = "호스트 접근 실패";
 		}
 		Calendar calendar = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("tttt-MM-dd HH:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		logger.info("호스트 스케줄 실행:["+batchResult+"]" + dateFormat.format(calendar.getTime()));
 	}
 	
 	public void listHostInfoScheduler() throws Exception{
 		String batchResult = "호스트 info 접근 성공";
 		try {
-			List<HostInfoVO> hostInfoList = scheduleService.listHostInfoScheduler();
+			List<AdminHostInfoVO> hostInfoList = scheduleService.listHostInfoScheduler();
 			if(hostInfoList != null) {
 				for(int i = 0; i < hostInfoList.size(); i++) {
 					schHostInfoVO = hostInfoList.get(i);
@@ -93,7 +92,7 @@ public class AdminScheduler {
 			batchResult = "호스트 info 접근 실패";
 		}
 		Calendar calendar = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("tttt-MM-dd HH:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		logger.info("호스트 info 스케줄 실행:["+batchResult+"]" + dateFormat.format(calendar.getTime()));
 	}
 	
@@ -112,7 +111,7 @@ public class AdminScheduler {
 			batchResult = "상품 접근 실패";
 		}
 		Calendar calendar = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("tttt-MM-dd HH:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		logger.info("상품 스케줄 실행:["+batchResult+"]" + dateFormat.format(calendar.getTime()));
 	}
 	

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.myspring.Onaju.admin.adminGoods.vo.AdminHostRoomVO;
-import com.myspring.Onaju.host.hostInfo.vo.HostInfoVO;
-import com.myspring.Onaju.host.vo.HostVO;
+import com.myspring.Onaju.admin.adminHost.vo.AdminHostInfoVO;
+import com.myspring.Onaju.admin.adminHost.vo.AdminHostVO;
 import com.myspring.Onaju.member.vo.MemberVO;
 
 @Repository("scheduleDAO")
@@ -18,16 +18,16 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 	
 	@Override
 	public List<MemberVO> selectRetireMembers() throws Exception {
-		return sqlSession.selectList("mapper.member.selectRetireMembers");
+		return sqlSession.selectList("mapper.admin.member.selectRetireMembers");
 	}
 
 	@Override
 	public int deleteRetireMember(String u_id) throws Exception {
-		return sqlSession.delete("mapper.member.deleteRetireMember", u_id);
+		return sqlSession.delete("mapper.admin.member.deleteRetireMember", u_id);
 	}
 
 	@Override
-	public List<HostVO> selectRetireHost() throws Exception {
+	public List<AdminHostVO> selectRetireHost() throws Exception {
 		return sqlSession.selectList("mapper.admin.host.selectRetireHost");
 	}
 
@@ -37,7 +37,7 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 	}
 
 	@Override
-	public List<HostInfoVO> selectRetireHostInfo() throws Exception {
+	public List<AdminHostInfoVO> selectRetireHostInfo() throws Exception {
 		return sqlSession.selectList("mapper.admin.host.selectRetireHostInfo");
 	}
 
