@@ -55,10 +55,13 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	@Resource(name="adminUploadPath")
 	String adminUploadPath;
 	
+	
+	// 공지사항 목록
 	@Override
 	@RequestMapping(value = "/admin/noticeList.do", method = RequestMethod.GET)
 	public ModelAndView adminNoticeList(Criteria cri) throws Exception {		
 		
+		// datepicker 끝 날짜 선택 시 0시를 지정하기 때문에 해당 날짜에 조건을 검색할 수 없음 따라서 날짜 1을 더해줌 
 		if(cri.getJoin_endDate() != "" && cri.getJoin_endDate() != null) {
 			String endDate = cri.getJoin_endDate();
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -72,22 +75,59 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		ModelAndView mav = new ModelAndView();
 		
 		int total = adminBoardService.noticeListTotal(cri);
+		
 		List<Map<String, Object>> noticeList = adminBoardService.noticeList(cri);
+		
 		mav.addObject("noticeList", noticeList);
 		mav.addObject("pageMaker", new PageVO(cri,total));
+		
 		return mav; 
 	}
 	
+	
+	// 공지사항 상세화면
 	@Override
 	@RequestMapping(value = "/admin/noticeDetail.do", method = RequestMethod.GET)
 	public ModelAndView adminNoticeDetail(@RequestParam("notice_code")String notice_code, @ModelAttribute("cri") Criteria cri) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
+		
 		Map<String, Object> noticeMap = adminBoardService.noticeDetail(notice_code);
+		
 		mav.addObject("noticeMap", noticeMap);
+		
 		return mav;
 	}
-
+	
+	
+	// 공지사항 이미지 호출
+	@Override
+	@RequestMapping(value = "/admin/imgFile.do", method= RequestMethod.GET)
+	public void imgFile(String creID, String notice_code, HttpServletResponse response) throws Exception {
+			
+		OutputStream out = response.getOutputStream();
+		Map<String, Object> imgInfoMap = new HashMap<String, Object>();
+		imgInfoMap.put("a_id", creID);
+		imgInfoMap.put("notice_code", notice_code);
+		String save_File_Name = adminBoardService.getImgFile(imgInfoMap);
+		String filePath = adminUploadPath +"\\"+ save_File_Name;
+			
+		File img = new File(filePath);
+		FileInputStream in = new FileInputStream(img);
+		
+		byte[] buffer = new byte[1024*8];
+		while (true) {
+			int count = in.read(buffer);
+			if(count == -1) 
+				break;
+			out.write(buffer,0,count);
+		}
+		in.close();
+		out.close();	
+	}
+	
+	
+	// 공지사항 등록 화면 폼
 	@Override
 	@RequestMapping(value = "/admin/noticeForm.do", method = RequestMethod.GET)
 	public ModelAndView adminNoticeForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -101,24 +141,39 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	@Override
 	@RequestMapping(value = "/admin/insertNotice.do", method = RequestMethod.POST)
 	public ModelAndView insertNotice(AdminNoticeVO noticeVO, MultipartFile file, HttpServletRequest request) throws Exception {
+		
 		ModelAndView mav = new ModelAndView("redirect:/admin/noticeList.do");
+		// 공지사항은 관리자가 등록하기 때문에 관리자 정보(로그인 시 저장한 정보)를 불러오기 위해 세션 사용
 		HttpSession session = request.getSession();
 		adminVO = (AdminVO)session.getAttribute("adminInfo");
 		String a_id = adminVO.getA_id();
+		
+		
+		// 테스트 끝날 시 삭제 로거보단 디버깅이 편한거 같음
 		logger.debug("==========vo테스트==========");
 		logger.debug("제목 : " + noticeVO.getNotice_title());
 		logger.debug("내용 : " + noticeVO.getNotice_content());
 		logger.debug("작성자 : " + a_id);
+		
 		noticeVO.setA_id(a_id);
+		// 입력값이 담긴 noticeVO에 DB insert 시 필수 값인 a_id 값을 담고 서비스로 보냄
 		adminBoardService.insertNotice(noticeVO);
+		
+		// DB에 저장이 완료되면 생성되는 auto_increment 번호를 notice_code 변수에 저장
 		int notice_code = noticeVO.getNotice_code();
+		// DB에 제대로 저장이 되었다면 숫자 1
 		if(notice_code != 0) {
+			
 			logger.debug("==========게시번호 확인==========");
 			logger.debug("게시번호 : "+ notice_code);
+			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("a_id", a_id);
 			map.put("notice_code", notice_code);
+			
+			// file에 이미지 정보가 담겨 있는지 확인
 			if(!file.isEmpty()) {
+				// 담겨 있다면 같은 클래스 내에 있는 parseFileInfo 호출
 				Map<String, Object> imgFile = parseFileInfo(map, file);
 				adminBoardService.insertImgFile(imgFile);
 			}
@@ -168,30 +223,7 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		return imgFile;
 	}
 	
-	//이미지 파일 불러오기
-	@Override
-	@RequestMapping(value = "/admin/imgFile.do", method= RequestMethod.GET)
-	public void imgFile(String creID, String notice_code, HttpServletResponse response) throws Exception {
-		OutputStream out = response.getOutputStream();
-		Map<String, Object> imgInfoMap = new HashMap<String, Object>();
-		imgInfoMap.put("a_id", creID);
-		imgInfoMap.put("notice_code", notice_code);
-		String save_File_Name = adminBoardService.getImgFile(imgInfoMap);
-		String filePath = adminUploadPath +"\\"+ save_File_Name;
-		
-		File img = new File(filePath);
-		FileInputStream in = new FileInputStream(img);
-		
-		byte[] buffer = new byte[1024*8];
-		while (true) {
-			int count = in.read(buffer);
-			if(count == -1) 
-				break;
-			out.write(buffer,0,count);
-		}
-		in.close();
-		out.close();	
-	}
+	
 
 	@Override
 	@RequestMapping(value = "/admin/noticeModify.do", method = RequestMethod.GET)
