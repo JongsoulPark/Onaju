@@ -4,50 +4,54 @@ import org.springframework.stereotype.Component;
 
 @Component("adminOrderVO")
 public class AdminOrderVO {
+	
 	//주문 정보
-	private String order_code;
-	private String u_id;
-	private String h_code;
-	private String room_code;
-	private String order_name;
-	private String order_phone;
-	private String order_email1;
-	private String order_email2;
-	private String checkIn_date;
-	private String checkOut_date;
-	private String people_count;
-	private String room_fee;
-	private String pay_type;
-	private String discount;
-	private String total;
-	private String pay_state;
-	private String creDate;
-	private String reservation_state;
-	private String use_state;
+	private String order_code;			// 주문 번호
+	private String u_id;				// 주문 회원 아이디
+	private String h_code;				// 가맹점 관리 번호
+	private String room_code;			// 상품 관리 번호
+	private String order_name;			// 예약자 이름
+	private String order_phone;			// 예약자 전화번호
+	private String order_email1;		// 예약자 이메일
+	private String order_email2;		// 예약자 이메일 뒤
+	private String checkIn_date;		// 체크인 날짜
+	private String checkOut_date;		// 체크아웃 날짜
+	private String people_count;		// 예약 인원
+	private String room_fee;			// 상품 가격
+	private String pay_type;			// 결제 타입
+	private String discount;			// 할인율
+	private String total;				// 총 결제 금액
+	private String pay_state;			// 결제 상태
+	private String creDate;				// 예약 날짜
+	private String reservation_state;	// 판매자 예약 승인 여부
+	private String use_state;			// 예약자 상품 이용 여부
+	
 	//주문자 정보
-	private String u_name;
-	private String u_point;
-	private String u_grade;
+	private String u_name;				// 회원 이름
+	private String u_point;				// 포인트
+	private String u_grade;				// 회원 등급
 	
 	//사업장 정보
-	private String hostInfo_name;
-	private String zipcode;
-	private String roadAddress;
-	private String numberAddress;
-	private String restAddress;
-	private String host_type;
-	//사업주 정보
-	private String h_name;
-	private String h_phone;
-	private String h_email1;
-	private String h_email2;
-	private String deputy_name;
-	private String deputy_phone;
+	private String hostInfo_name;		// 가맹점명
+	private String zipcode;				// 가맹점 주소
+	private String roadAddress;			// 가맹점 도로명 주소
+	private String numberAddress;		// 가맹점 지번
+	private String restAddress;			// 가맹점 나머지 주소
+	private String host_type;			// 가맹점 유형(호텔, 모텔, 민박)
+	
+	//판매자 정보
+	private String h_name;				// 판매자 성함
+	private String h_phone;				// 판매자 전화번호
+	private String h_email1;			// 판매자 이메일
+	private String h_email2;			// 판매자 이메일 뒤
+	private String deputy_name;			// 대리인 성함
+	private String deputy_phone;		// 대리인 전화번호
+	
 	//방정보
-	private String room_number;
-	private String room_type;
-	private String able_checkIn;
-	private String able_checkOut;
+	private String room_number;			// 상품 호실
+	private String room_type;			// 상품 타입 (예 : 스위트룸)
+	private String able_checkIn;		// 체크인 가능한 시간
+	private String able_checkOut;		// 체크아웃 가능한 시간
 	
 	
 		

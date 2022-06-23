@@ -15,6 +15,13 @@ import com.myspring.Onaju.admin.adminHost.vo.AdminHostInfoVO;
 import com.myspring.Onaju.admin.adminHost.vo.AdminHostVO;
 import com.myspring.Onaju.member.vo.MemberVO;
 
+/*
+ * 5조 오나주 웹 개발 프로젝트(그린컴퓨터아트학원)
+ * 작성자 : 박종설
+ * 최종 작성일 : 2022-06-23
+ * 관리자 스프링 배치 프로그램 (삭제 관련)
+ */
+
 @Controller("schedule")
 public class AdminScheduler {
 	
@@ -30,11 +37,15 @@ public class AdminScheduler {
 	@Autowired
 	private ScheduleService scheduleService;
 	
+	// 스프링 배치 프로그램 작성 시 어노테이션 사용하면 안됨
+	
+	// 작동하고 있는지 확인용
 	public void memberSchedule(){
 		logger.info("memberSchedule 동작하고 있음 : {}",Calendar.getInstance().getTime());
 	}
 	
-	
+	// 탈퇴 회원 조회 및 삭제 (삭제 트리거에 의해서 삭제 테이블에 들어감)
+	// DB u_member 의 del_yn 값이 Y(탈퇴)면 삭제 함
 	public void listMemberScheduler() throws Exception {
 		String batchResult = "성공";
 		
@@ -57,6 +68,9 @@ public class AdminScheduler {
 		logger.info("스케줄 실행:["+batchResult+"]"+dateFormat.format(calendar.getTime()));
 	}
 	
+	
+	// 탈퇴 판매자 조회 및 삭제(삭제 트리거에 의해서 삭제 테이블에 들어감, 단 cascade 된 하위 테이블은 삭제 트리거 작동을 안함 생각해 볼 것)
+	// DB h_host 의 del_yn 값이 Y(탈퇴)면 삭제 함 (cascade된 h_host_info, h_room 같이 삭제)
 	public void listHostScheduler() throws Exception{
 		String batchResult = "호스트 접근 성공";
 		
@@ -77,6 +91,9 @@ public class AdminScheduler {
 		logger.info("호스트 스케줄 실행:["+batchResult+"]" + dateFormat.format(calendar.getTime()));
 	}
 	
+	
+	// 등록 해지 사업장 조회 및 삭제(삭제 트리거에 의해서 삭제 테이블에 들어감, 단 cascade 된 하위 테이블은 삭제 트리거 작동을 안함 생각해 볼 것)
+	// DB h_host_info 의 del_yn 값이 Y(등록 해지)면 삭제 함 (cascade된 h_room 같이 삭제)
 	public void listHostInfoScheduler() throws Exception{
 		String batchResult = "호스트 info 접근 성공";
 		try {
@@ -96,6 +113,9 @@ public class AdminScheduler {
 		logger.info("호스트 info 스케줄 실행:["+batchResult+"]" + dateFormat.format(calendar.getTime()));
 	}
 	
+	
+	// 등록 해지 상품 조회 및 삭제( 삭제 트리거에 의해서 삭제 테이블에 들어감)
+	// DB h_room 의 del_yn 값이 Y(등록 해지)면 삭제 함
 	public void listRoomScheduler() throws Exception{
 		String batchResult = "상품 접근 성공";
 		try {

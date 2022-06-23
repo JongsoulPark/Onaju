@@ -44,4 +44,9 @@ public class AdminMainDAOImpl implements AdminMainDAO {
 	public int resultLoginPw(Map<String, String> loginMap) {
 		return sqlSession.selectOne("mapper.admin.selectLoginPw", loginMap);
 	}
+
+	@Override
+	public int selectAdminJoin(Map<String, Object> joinMap) {
+		return  sqlSession.insert("mapper.admin.insertNewAdmin", joinMap);
+	}
 }

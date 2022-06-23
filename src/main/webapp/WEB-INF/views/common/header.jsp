@@ -309,7 +309,6 @@ color:black;
 										<li><hr class="dropdown-divider" /></li>
 										<li><a class="dropdown-item"
 											href="${contextPath}/host/h_joinForm.do">호스트가입</a></li>
-									
 										<li><a class="dropdown-item"
 											href="${contextPath}/cs/noticeBoard.do">고객센터</a></li>
 										<li><a class="dropdown-item"
@@ -320,7 +319,6 @@ color:black;
 					
 									<li><a class="dropdown-item"
 											href="${contextPath}/member/joinForm.do">회원가입</a></li>
-										
 										<li><a class="dropdown-item"
 											href="${contextPath}/mypage/myCart.do">장바구니</a></li>
 										<li><hr class="dropdown-divider" /></li>
@@ -369,7 +367,8 @@ color:black;
 										<li><a class="dropdown-item"
 											href="${contextPath}/host/h_joinForm.do">호스트가입</a></li>
 										<li><hr class="dropdown-divider" /></li>
-								
+										<li><a class="dropdown-item"
+											href="${contextPath}/admin/main.do">관리자 페이지</a></li>
 										<li><a class="dropdown-item"
 											href="${contextPath}/cs/noticeBoard.do">고객센터</a></li>
 										<li><a class="dropdown-item" href="#">도움말</a></li>

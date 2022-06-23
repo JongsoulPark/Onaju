@@ -183,7 +183,7 @@ section{
 					</div>
 				</div>
 				<div class="loginForm-con-chil-box3">
-					<div><div><input type="submit" onClick="fn_joinform_check()" value="가입하기"/></div></div>
+					<div><div><input type="submit"  value="가입하기"/></div></div>
 					<div><div><a href="${contextPath }/admin/loginForm.do">돌아가기</a></div></div>
 				</div>
 			</div>

@@ -90,6 +90,25 @@ import com.myspring.Onaju.admin.adminMain.service.AdminMainService;
 	 public String adminJoinForm() throws Exception {
 		 return "/admin/main/joinForm";
 	 }
+	 
+	 @Override
+	 @RequestMapping(value = "/admin/joinAdmin.do", method = RequestMethod.POST)
+	 public ModelAndView adminJoin(@RequestParam Map<String, Object> joinMap) {
+		 
+		 ModelAndView mav = new ModelAndView();
+		 
+		 int join_admin = adminMainService.adminJoin(joinMap);
+		 if(join_admin == 1) {
+			 String message = "회원등록이 완료되었습니다.";
+			 mav.addObject("message", message);
+			 mav.setViewName("/admin/main/loginForm");
+		 }else {
+			 String message = "회원등록이 실패하였습니다.";
+			 mav.addObject("message", message);
+			 mav.setViewName("/admin/main/joinForm");
+		 }
+		 return mav; 
+	 }
 
 	 // 관리자 아이디 중복 검사
 	 @Override
@@ -109,5 +128,6 @@ import com.myspring.Onaju.admin.adminMain.service.AdminMainService;
 		 session.removeAttribute("adminIfo");
 		 session.invalidate();
 		 return "redirect:/admin/loginForm.do";
-	 }	
+	 }
+	 
 }

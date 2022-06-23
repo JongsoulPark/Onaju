@@ -14,4 +14,6 @@ public interface AdminMainService {
 	public int resultLoginId(String a_id);
 	// 관리자 로그인 시 비밀번호 일치 유무
 	public int resultLoginPw(Map<String, String> loginMap);
+	// 관리자 회원가입
+	public int adminJoin(Map<String, Object> joinMap);
 }

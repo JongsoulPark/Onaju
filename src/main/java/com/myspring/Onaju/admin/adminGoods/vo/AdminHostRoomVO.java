@@ -4,65 +4,65 @@ import org.springframework.stereotype.Component;
 
 @Component("adminHostRoomVO")
 public class AdminHostRoomVO {
-	private String h_id; 				// 호스트 아이디/
-	private String h_name;				// 호스트 이름/
-	private String h_phone;				// 호스트 전화번호/
-	private String h_email1;			// 호스트 이메일1/
-	private String h_email2;			// 호스트 이메일2/
-	private String deputy_name;			// 호스트 대리인 이름/
-	private String deputy_phone;		// 호스트 대리인 전화번호/
-	private String deputy_birth; 		// 호스트 대리인 생년월일/
-	private String deputy_department;	// 호스트 대리인 관계/
-	private String h_birth_y;
-	private String h_birth_m;
-	private String h_birth_d;
-	private String h_gender;
-	private String room_count;
+	private String h_id; 				// 판매자 아이디/
+	private String h_name;				// 판매자 이름/
+	private String h_phone;				// 판매자 전화번호/
+	private String h_email1;			// 판매자 이메일1/
+	private String h_email2;			// 판매자 이메일2/
+	private String deputy_name;			// 판매자 대리인 이름/
+	private String deputy_phone;		// 판매자 대리인 전화번호/
+	private String deputy_birth; 		// 판매자 대리인 생년월일/
+	private String deputy_department;	// 판매자 대리인 관계/
+	private String h_birth_y;			// 판매자 생년월일(년)
+	private String h_birth_m;			// 판매자 생년월일(월)
+	private String h_birth_d;			// 판매자 생년월일(일)
+	private String h_gender;			// 판매자 성별
+	private String room_count;			// 판매자 사업장 상품 개수
 	
-	private String hostInfo_name;   	// 호스트 사업장명/
-	private String h_code; 				// 호스트 사업장 관리 번호(사이트에서 부여한 관리번호)
-	private String room_code; 			// 호스트 사업장 룸 관리 번호
-	private String h_sellerNum; 		// 호스트 사업장 사업자등록번호(나라에서 관리하는 번호)
-	private String h_accountNum; 		// 호스트 사업장 계좌번호
-	private String zipcode; 			// 호스트 사업장 주소(우편번호)
-	private String roadAddress; 		// 호스트 사업장 주소(도로명 주소)
-	private String numberAddress; 		// 호스트 사업장 주소(지번 주소)
-	private String restAddress; 		// 호스트 사업장 주소(상세 주소)
-	private String host_type; 			// 호스트 사업장 업종 타입
+	private String hostInfo_name;   	// 판매자 사업장명/
+	private String h_code; 				// 판매자 사업장 관리 번호(사이트에서 부여한 관리번호)
+	private String room_code; 			// 판매자 사업장 룸 관리 번호
+	private String h_sellerNum; 		// 판매자 사업장 사업자등록번호(나라에서 관리하는 번호)
+	private String h_accountNum; 		// 판매자 사업장 계좌번호
+	private String zipcode; 			// 판매자 사업장 주소(우편번호)
+	private String roadAddress; 		// 판매자 사업장 주소(도로명 주소)
+	private String numberAddress; 		// 판매자 사업장 주소(지번 주소)
+	private String restAddress; 		// 판매자 사업장 주소(상세 주소)
+	private String host_type; 			// 판매자 사업장 업종 타입
 
 	
-	private String room_type; 			// 호스트 사업장 룸 타입(예: 디럭스)
-	private String room_number; 		// 호스트 사업장 룸 호실
-	private String room_fee; 			// 호스트 사업장 룸 값
-	private String able_checkIn; 		// 호스트 사업장 룸 체크인 시간
-	private String able_checkOut; 		// 호스트 사업장 룸 체크아웃 시간
-	private String title; 				// 호스트 사업장 룸 소개 제목
-	private String content; 			// 호스트 사업장 룸 소개글 
-	private String room_status; 		// 호스트 사업장 룸 상태
-	private String min_number; 			// 호스트 사업장 룸 최소 수용인원
-	private String max_number; 			// 호스트 사업장 룸 최대 수용인원
-	private String bed_type; 			// 호스트 사업장 룸 침대 타입
-	private String bed_count; 			// 호스트 사업장 룸 침대 개수
-	private String bath_count; 			// 호스트 사업장 룸 화장실 개수
-	private String party_check; 		// 호스트 사업장 룸 파티 가능 여부
-	private String kitchen; 			// 호스트 사업장 룸 부엌 여부
-	private String wifi; 				// 호스트 사업장 룸 와이파이 여부
-	private String parking; 			// 호스트 사업장 룸 주차 여부
-	private String tv; 					// 호스트 사업장 룸 티비 여부
-	private String refrigerator;		// 호스트 사업장 룸 냉장고 여부
-	private String hairdryer; 			// 호스트 사업장 룸 헤어드라이기 여부
-	private String washer; 				// 호스트 사업장 룸 샤워실 여부
-	private String pet; 				// 호스트 사업장 룸 애완동물 가능 여부
-	private String pickup; 				// 호스트 사업장 룸 픽업 서비스 여부
-	private String dryer; 				// 호스트 사업장 룸 옷 드라이어 여부
-	private String elevator; 			// 호스트 사업장 엘리베티어 여부
-	private String barbecue; 			// 호스트 사업장 바베큐 여부
-	private String pool; 				// 호스트 사업장 수영장 여부
-	private String aircon; 				// 호스트 사업장 룸 에어컨 여부
-	private String heater; 				// 호스트 사업장 룸 히터 여부
-	private String smoking; 			// 호스트 사업장 룸 흡연 가능 여부
-	private String creDate; 			// 호스트 사업장 룸 등록 날짜
-	private String del_yn; 				// 호스트 사업장 룸 삭제 여부
+	private String room_type; 			// 판매자 사업장 룸 타입(예: 디럭스)
+	private String room_number; 		// 판매자 사업장 룸 호실
+	private String room_fee; 			// 판매자 사업장 룸 값
+	private String able_checkIn; 		// 판매자 사업장 룸 체크인 시간
+	private String able_checkOut; 		// 판매자 사업장 룸 체크아웃 시간
+	private String title; 				// 판매자 사업장 룸 소개 제목
+	private String content; 			// 판매자 사업장 룸 소개글 
+	private String room_status; 		// 판매자 사업장 룸 상태
+	private String min_number; 			// 판매자 사업장 룸 최소 수용인원
+	private String max_number; 			// 판매자 사업장 룸 최대 수용인원
+	private String bed_type; 			// 판매자 사업장 룸 침대 타입
+	private String bed_count; 			// 판매자 사업장 룸 침대 개수
+	private String bath_count; 			// 판매자 사업장 룸 화장실 개수
+	private String party_check; 		// 판매자 사업장 룸 파티 가능 여부
+	private String kitchen; 			// 판매자 사업장 룸 부엌 여부
+	private String wifi; 				// 판매자 사업장 룸 와이파이 여부
+	private String parking; 			// 판매자 사업장 룸 주차 여부
+	private String tv; 					// 판매자 사업장 룸 티비 여부
+	private String refrigerator;		// 판매자 사업장 룸 냉장고 여부
+	private String hairdryer; 			// 판매자 사업장 룸 헤어드라이기 여부
+	private String washer; 				// 판매자 사업장 룸 샤워실 여부
+	private String pet; 				// 판매자 사업장 룸 애완동물 가능 여부
+	private String pickup; 				// 판매자 사업장 룸 픽업 서비스 여부
+	private String dryer; 				// 판매자 사업장 룸 옷 드라이어 여부
+	private String elevator; 			// 판매자 사업장 엘리베티어 여부
+	private String barbecue; 			// 판매자 사업장 바베큐 여부
+	private String pool; 				// 판매자 사업장 수영장 여부
+	private String aircon; 				// 판매자 사업장 룸 에어컨 여부
+	private String heater; 				// 판매자 사업장 룸 히터 여부
+	private String smoking; 			// 판매자 사업장 룸 흡연 가능 여부
+	private String creDate; 			// 판매자 사업장 룸 등록 날짜
+	private String del_yn; 				// 판매자 사업장 룸 삭제 여부
 	
 	
 	

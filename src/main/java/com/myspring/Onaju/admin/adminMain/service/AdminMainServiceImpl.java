@@ -44,4 +44,9 @@ public class AdminMainServiceImpl implements AdminMainService {
 		return adminMainDAO.resultLoginPw(loginMap);
 	}
 
+	@Override
+	public int adminJoin(Map<String, Object> joinMap) {
+		return adminMainDAO.selectAdminJoin(joinMap);
+	}
+
 }

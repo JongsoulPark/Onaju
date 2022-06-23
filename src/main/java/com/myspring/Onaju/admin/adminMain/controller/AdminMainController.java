@@ -24,11 +24,13 @@ public interface AdminMainController {
 	public ModelAndView adminLoginForm(HttpServletRequest request, HttpServletResponse response, String message) throws Exception;
 	// 관리자 로그인
 	public ModelAndView adminLogin(@RequestParam Map<String, String> loginMap, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	// 관리자 회원 가입
+	// 관리자 회원 가입 화면
 	public String adminJoinForm() throws Exception;
 	// 관리자 아이디 중복 검사
 	public ResponseEntity<String> adminOverlapped(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	// 관리자 로그아웃
 	public String adminLogOut(HttpServletRequest request, HttpServletResponse response);
+	// 관리자 회원가입
+	public ModelAndView adminJoin(Map<String, Object> joinMap);
 }
  

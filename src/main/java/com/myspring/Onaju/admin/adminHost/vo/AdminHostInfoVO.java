@@ -4,32 +4,32 @@ import org.springframework.stereotype.Component;
 
 @Component("adminHostInfoVO")
 public class AdminHostInfoVO {
-	private String h_code;
-	private String h_id;
-	private String h_name;
-	private String h_birth_y;
-	private String h_birth_m;
-	private String h_birth_d;
-	private String hostInfo_name;
-	private String h_sellerNum;
-	private String h_accountNum;
-	private String zipcode;
-	private String roadAddress;
-	private String numberAddress;
-	private String restAddress;
-	private String host_type;
-	private String room_count;
-	private String creDate;
-	private String del_yn;
-	private String h_gender;
+	private String h_code;					// 가맹점 관리번호
+	private String h_id;					// 판매자 아이디
+	private String h_name;					// 판매자 성함
+	private String h_birth_y;				// 판매자 생년월일(년)
+	private String h_birth_m;				// 판매자 생년월일(월)
+	private String h_birth_d;				// 판매자 생년월일(일)
+	private String hostInfo_name;			// 가맹점명	
+	private String h_sellerNum;				// 가맹점 사업자번호
+	private String h_accountNum;			// 가맹점 계좌번호
+	private String zipcode;					// 가맹점 우편번호
+	private String roadAddress;				// 가맹점 도로명주소
+	private String numberAddress;			// 가맹점 지번
+	private String restAddress;				// 가맹점 나머지 주소
+	private String host_type;				// 판매자 사업 유형(호텔, 모텔, 숙박)
+	private String room_count;				// 가맹점 상품 개수
+	private String creDate;					// 가맹점 등록 날짜
+	private String del_yn;					// 가맹점 해지 유무
+	private String h_gender;				// 판매자 성별
 	
-	private String h_email1;
-	private String h_email2;
-	private String h_phone;
-	private String deputy_name;
-	private String deputy_phone;
-	private String deputy_department;
-	private String deputy_birth;
+	private String h_email1;				// 판매자 이메일
+	private String h_email2;				// 판매자 이메일2
+	private String h_phone;					// 판매자 전화번호
+	private String deputy_name;				// 판매자 대리인 이름
+	private String deputy_phone;			// 판매자 대리인 전화번호
+	private String deputy_department;		// 판매자 대리인 관계
+	private String deputy_birth;			// 판매자 대리인 생년월일
 
 	
 	
