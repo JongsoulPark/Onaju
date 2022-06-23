@@ -27,6 +27,13 @@ import com.myspring.Onaju.admin.adminHost.vo.AdminHostInfoVO;
 import com.myspring.Onaju.admin.adminHost.vo.AdminHostVO;
 import com.myspring.Onaju.member.controller.MemberControllerImpl;
 
+/*
+ * 5조 오나주 웹 개발 프로젝트(그린컴퓨터아트학원)
+ * 작성자 : 박종설
+ * 최종 작성일 : 2022-06-23
+ * 관리자 판매자 및 사업장
+ */
+
 @Controller("adminHostController")
 public class AdminHostControllerImpl implements AdminHostController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberControllerImpl.class);
@@ -39,6 +46,9 @@ public class AdminHostControllerImpl implements AdminHostController {
 
 	
 	//==========================================호스트 관련 메서드==========================================
+	
+	
+	// 판매자 목록
 	@Override
 	@RequestMapping(value="/admin/hostList.do" ,method = {RequestMethod.GET,RequestMethod.POST}) 
 	public ModelAndView hostList(Criteria cri) throws Exception {
@@ -64,6 +74,7 @@ public class AdminHostControllerImpl implements AdminHostController {
 	  }
 	 
 	
+	// 판매자 상세
 	@Override
 	@RequestMapping(value="/admin/hostDetail.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView hostDetail(@RequestParam("h_id")String h_id, @ModelAttribute("cri") Criteria cri)
@@ -77,7 +88,7 @@ public class AdminHostControllerImpl implements AdminHostController {
 		return mav;
 	}
 
-	
+	// 판매자 수정 화면
 	@Override
 	@RequestMapping(value="/admin/hostModify.do" ,method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView hostModifyForm(@RequestParam("h_id") String h_id, @ModelAttribute("cri") Criteria cri)
@@ -90,20 +101,11 @@ public class AdminHostControllerImpl implements AdminHostController {
 		return mav;
 	}
 	
-	
-	@RequestMapping(value = "/admin/hostCalculate.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView hostCalculate(HttpServletRequest request, HttpServletResponse response) throws Exception {		
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String)request.getAttribute("viewName");
-		mav.setViewName(viewName);		
-		return mav;
-	}
-	
-	
+	// 판매자 수정
 	@Override
 	@RequestMapping(value = "/admin/updateHost.do", method = RequestMethod.POST)
 	public String updateHost(AdminHostVO hostVO,
-			@ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		@ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
 		int update_host = adminHostService.updateHost(hostVO);
 		if(update_host == 1) {
@@ -121,8 +123,17 @@ public class AdminHostControllerImpl implements AdminHostController {
 		
 		return "redirect:/admin/hostDetail.do";
 	}
-
 	
+	// 판매자 매출( **미구현** )
+	@RequestMapping(value = "/admin/hostCalculate.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView hostCalculate(HttpServletRequest request, HttpServletResponse response) throws Exception {		
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String)request.getAttribute("viewName");
+		mav.setViewName(viewName);		
+		return mav;
+	}
+	
+	// 판매자 삭제
 	@Override
 	@RequestMapping(value = "/admin/hostDelete.do", method = RequestMethod.POST)
 	public ModelAndView deletHost(@RequestParam String h_id, @ModelAttribute("cri") Criteria cri) throws Exception{
@@ -143,7 +154,11 @@ public class AdminHostControllerImpl implements AdminHostController {
 		return mav;
 	}
 	
+	
 	//==========================================사업장 관련 메서드==========================================
+	
+	
+	// 사업장 목록
 	@Override
 	@RequestMapping(value="/admin/hostInfoList.do" ,method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView hostInfoList(Criteria cri) throws Exception {
@@ -169,7 +184,7 @@ public class AdminHostControllerImpl implements AdminHostController {
 		return mav;
 	}
 	
-	
+	// 사업장 상세
 	@Override
 	@RequestMapping(value="/admin/hostInfoDetail.do" ,method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView hostInfoDetail(@RequestParam("h_code") String h_code, @ModelAttribute("cri") Criteria cri)
@@ -181,7 +196,7 @@ public class AdminHostControllerImpl implements AdminHostController {
 		return mav;
 	}
 
-	
+	// 사업장 수정 화면
 	@Override
 	@RequestMapping(value = "/admin/hostInfoModify.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView hostInfoModifyForm(String h_code, @ModelAttribute("cri") Criteria cri) throws Exception {
@@ -192,7 +207,7 @@ public class AdminHostControllerImpl implements AdminHostController {
 		return mav;
 	}
 
-
+	// 사업장 수정
 	@Override
 	@RequestMapping(value = "/admin/hostInfoUpdate.do", method = RequestMethod.POST)
 	public ModelAndView updateHostInfo(AdminHostInfoVO hostInfoVO, @ModelAttribute("cri") Criteria cri) {
@@ -217,7 +232,7 @@ public class AdminHostControllerImpl implements AdminHostController {
 		return mav;
 	}
 
-	
+	//사업장 삭제
 	@Override
 	@RequestMapping(value = "/admin/hostInfoDelete.do", method = RequestMethod.POST)
 	public ModelAndView deleteHostInfo(@RequestParam String h_code, @ModelAttribute("cri") Criteria cri) throws Exception{

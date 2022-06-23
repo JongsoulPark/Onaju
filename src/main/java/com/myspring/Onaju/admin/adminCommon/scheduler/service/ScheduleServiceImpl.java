@@ -19,7 +19,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 	private ScheduleDAO scheduleDAO;
 	
 
-	
+	// 탈퇴 회원 조회 및 삭제
 	public List<MemberVO> listMemberScheduler() throws Exception {
 		return scheduleDAO.selectRetireMembers();
 		
@@ -29,6 +29,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 		scheduleDAO.deleteRetireMember(u_id);
 	}
 
+	// 탈퇴 판매자 조회 및 삭제
 	@Override
 	public List<AdminHostVO> listHostScheduler() throws Exception {
 		return scheduleDAO.selectRetireHost();
@@ -39,6 +40,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 		scheduleDAO.deleteRetireHost(h_id);
 	}
 
+	// 등록 해지 사업장 조회 및 삭제
 	@Override
 	public List<AdminHostInfoVO> listHostInfoScheduler() throws Exception {
 		return scheduleDAO.selectRetireHostInfo();
@@ -49,6 +51,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 		scheduleDAO.deleteRetireHostInfo(h_code);
 	}
 
+	// 등록 해지 상품 조회 및 삭제
 	@Override
 	public List<AdminHostRoomVO> listRoomScheduler() throws Exception {
 		return scheduleDAO.selectRetireRoom();

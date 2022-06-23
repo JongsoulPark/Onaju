@@ -16,6 +16,8 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	
+	// 탈퇴 회원 조회 및 삭제
 	@Override
 	public List<MemberVO> selectRetireMembers() throws Exception {
 		return sqlSession.selectList("mapper.admin.member.selectRetireMembers");
@@ -26,6 +28,7 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 		return sqlSession.delete("mapper.admin.member.deleteRetireMember", u_id);
 	}
 
+	// 탈퇴 판매자 조회 및 삭제
 	@Override
 	public List<AdminHostVO> selectRetireHost() throws Exception {
 		return sqlSession.selectList("mapper.admin.host.selectRetireHost");
@@ -36,6 +39,7 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 		return sqlSession.delete("mapper.admin.host.deleteRetireHost", h_id);
 	}
 
+	// 등록 해지 사업장 조회 및 삭제
 	@Override
 	public List<AdminHostInfoVO> selectRetireHostInfo() throws Exception {
 		return sqlSession.selectList("mapper.admin.host.selectRetireHostInfo");
@@ -46,6 +50,7 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 		return sqlSession.delete("mapper.admin.host.deleteRetireHostInfo", h_code);
 	}
 
+	// 등록 해지 상품 조회 및 삭제
 	@Override
 	public List<AdminHostRoomVO> selectRetireRoom() throws Exception {
 		return sqlSession.selectList("mapper.admin.goods.selectRetireRoom");

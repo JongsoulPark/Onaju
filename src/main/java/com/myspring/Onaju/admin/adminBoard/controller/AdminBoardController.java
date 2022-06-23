@@ -16,7 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myspring.Onaju.admin.adminBoard.vo.AdminEnquireReplyVO;
 import com.myspring.Onaju.admin.adminBoard.vo.AdminNoticeVO;
 import com.myspring.Onaju.admin.adminCommon.paging.Criteria;
-	
+
+/*
+ * 5조 오나주 웹 개발 프로젝트(그린컴퓨터아트학원)
+ * 작성자 : 박종설
+ * 최종 작성일 : 2022-06-23
+ * 관리자 게시판 관리(공지사항, 1대1 문의)
+ */
+
 public interface AdminBoardController {
 	
 	

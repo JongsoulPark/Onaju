@@ -20,6 +20,13 @@ import com.myspring.Onaju.admin.adminCommon.paging.PageVO;
 import com.myspring.Onaju.admin.adminGoods.service.AdminGoodsService;
 import com.myspring.Onaju.admin.adminGoods.vo.AdminHostRoomVO;
 
+/*
+ * 5조 오나주 웹 개발 프로젝트(그린컴퓨터아트학원)
+ * 작성자 : 박종설
+ * 최종 작성일 : 2022-06-23
+ * 관리자 상품 관리
+ */
+
 @Controller("adminGoodsController")
 public class AdminGoodsControllerImpl implements AdminGoodsController {
 	
@@ -28,6 +35,8 @@ public class AdminGoodsControllerImpl implements AdminGoodsController {
 	@Autowired
 	private AdminHostRoomVO adminHostRoomVO;
 	
+	
+	// 상품 목록 조회
 	@Override
 	@RequestMapping(value = "/admin/goodsList.do", method = { RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView roomsList(Criteria cri) throws Exception {
@@ -53,6 +62,8 @@ public class AdminGoodsControllerImpl implements AdminGoodsController {
 		return mav;
 	}
 
+	
+	// 상품 상세
 	@Override
 	@RequestMapping(value = "/admin/goodsDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView roomDetail(@RequestParam("room_code")String room_code, @ModelAttribute("cri") Criteria cri) throws Exception {
@@ -62,6 +73,7 @@ public class AdminGoodsControllerImpl implements AdminGoodsController {
 		return mav;
 	}
 
+	// 상품 정보 수정 화면
 	@Override
 	@RequestMapping(value = "/admin/goodsModify.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView roomModify(@RequestParam("room_code")String room_code, @ModelAttribute("cri") Criteria cri) throws Exception {
@@ -72,6 +84,8 @@ public class AdminGoodsControllerImpl implements AdminGoodsController {
 		return mav;
 	}
 
+	
+	// 상품 정보
 	@Override
 	@RequestMapping(value = "/admin/goodsUpdate.do", method = RequestMethod.POST)
 	public String roomUpdate(AdminHostRoomVO roomVO, @ModelAttribute Criteria cri, RedirectAttributes rttr) {
@@ -93,6 +107,8 @@ public class AdminGoodsControllerImpl implements AdminGoodsController {
 		return "redirect:/admin/goodsDetail.do";
 	}
 
+	
+	// 상품 삭제
 	@Override
 	@RequestMapping(value = "/admin/goodsDelete.do", method = RequestMethod.POST)
 	public ModelAndView roomDelete(@RequestParam String room_code, @ModelAttribute("cri") Criteria cri) {

@@ -32,11 +32,13 @@ public class AdminMainServiceImpl implements AdminMainService {
 		return adminMainDAO.selectAdminOverlappedID(id);
 	}
 
+	// 관리자 로그인 시 아이디 일치 유무
 	@Override
 	public int resultLoginId(String a_id) {
 		return adminMainDAO.resultLoginId(a_id);
 	}
 
+	// 관리자 로그인 시 비밀번호 일치 유무
 	@Override
 	public int resultLoginPw(Map<String, String> loginMap) {
 		return adminMainDAO.resultLoginPw(loginMap);

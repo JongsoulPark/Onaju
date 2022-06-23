@@ -33,23 +33,27 @@ public interface AdminBoardDAO {
 	public int selectDeleteNoticeImg(String img_code);
 	// 공지사항 게시글 삭제 
 	public int selectDeleteNotice(String notice_code);
-	// 공지사항 게시글 삭제 시 이미지 삭제
-	public void deleteNoticeImgInfo(String img_code);
+
 	
 	
 	// ==========================1대1 게시판==========================
 	
 	// 1대1 게시판 목록
 	public List<Map<String, Object>> selectAllEnquireList(Criteria cri);
+	// 1대1 게시글 상세
 	public List<Map<String, Object>> selectEnquireDetail(String enquire_NO);
+	// 1대1 게시글 개수
 	public int selectAllEnquireListTotal(Criteria cri);
-
+	// 1대1 게시글 조회수 계산
 	public void updateHit(String enquire_NO);
-	
-
-	public int insertEnquireReply(AdminEnquireReplyVO replyVO);
-	public List<Map<String, Object>> selectEnquireReplyDetail(AdminEnquireReplyVO replyVO);
+	// 1대1 게시글 상세 댓글 유무 체크
 	public int updateReplyCheck(AdminEnquireReplyVO replyVO);
+	// 1대1 게시글 댓글 등록
+	public int insertEnquireReply(AdminEnquireReplyVO replyVO);
+	// 1대1 게시글 댓글 목록
+	public List<Map<String, Object>> selectEnquireReplyDetail(AdminEnquireReplyVO replyVO);
+	// 1대1 게시글 댓글 수정
 	public int updateReply(AdminEnquireReplyVO replyVO);
+	// 1대1 게시글 댓글 삭제
 	public int deleteReply(String re_NO);
 }

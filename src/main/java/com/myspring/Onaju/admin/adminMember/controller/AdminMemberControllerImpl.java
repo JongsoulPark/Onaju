@@ -32,6 +32,7 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	private AdminOrderService adminOrderService;
 	
 	
+	// 회원 목록
 	@Override
 	@RequestMapping(value="/admin/memberList.do" ,method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView listMembers(Criteria cri) throws Exception {
@@ -56,6 +57,7 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 		return mav;
 	}
 
+	// 회원 상세
 	@Override
 	@RequestMapping(value="/admin/memberDetail.do" ,method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView memberDetail(@RequestParam("u_id")String u_id, @ModelAttribute("cri") Criteria cri) throws Exception {
@@ -69,6 +71,7 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 		return mav;
 	}
 
+	// 회원 수정 화면
 	@Override
 	@RequestMapping(value="/admin/memberModify.do" ,method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView memberModifyForm(@RequestParam("u_id")String u_id, @ModelAttribute("cri") Criteria cri)
@@ -79,6 +82,7 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 		return mav;
 	}
 
+	// 회원 정보 수정
 	@Override
 	@RequestMapping(value = "/admin/memberUpdate.do", method = RequestMethod.POST)
 	public ModelAndView memberUpdate(MemberVO vo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) throws Exception {
@@ -103,31 +107,7 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 		return mav;
 	}
 
-	@Override
-	@RequestMapping(value = "/admin/searchMember.do", method = RequestMethod.GET)
-	public ModelAndView searchMember(@RequestParam Map<String, Object> searchMap, Criteria cri) throws Exception {
-
-		if(searchMap.get("write_endDate") != null && searchMap.get("write_endDate") != "") {
-			String endDate = (String)searchMap.get("write_endDate");
-		
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = format.parse(endDate);
-			Date plus_endDate = new Date(date.getTime() + (1000*60*60*24));
-			String write_endDate = DateFormatUtils.format(plus_endDate, "yyyy-MM-dd");
-	
-			searchMap.put("write_endDate", write_endDate);
-		}
-		
-		
-		List<Map<String, Object>> searchMemberList =  adminMemberService.searchMember(searchMap);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/admin/memberList");
-		mav.addObject("membersList", searchMemberList);
-
-		return mav;	
-	}
-
+	// 회원 삭제
 	@Override
 	@RequestMapping(value = "/admin/memberDelete.do", method = RequestMethod.POST)
 	public ModelAndView memberDelete(@RequestParam String u_id, @ModelAttribute("cri") Criteria cri) throws Exception {

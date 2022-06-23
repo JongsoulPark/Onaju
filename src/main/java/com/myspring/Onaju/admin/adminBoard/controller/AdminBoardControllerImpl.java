@@ -42,6 +42,7 @@ import com.myspring.Onaju.admin.adminCommon.paging.PageVO;
  * 최종 작성일 : 2022-06-23
  * 관리자 게시판 관리(공지사항, 1대1 문의)
  */
+
 @RestController("adminBoardController")
 public class AdminBoardControllerImpl implements AdminBoardController {
 	
@@ -142,7 +143,7 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		return mav; 
 	}
 
-	//공지사항 메소드
+	//공지사항 게시글 등록(게시글 내용 + 이미지)
 	@Override
 	@RequestMapping(value = "/admin/insertNotice.do", method = RequestMethod.POST)
 	public ModelAndView insertNotice(AdminNoticeVO noticeVO, MultipartFile file, HttpServletRequest request) throws Exception {
@@ -193,7 +194,7 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		return mav;
 	}
 
-	//공지사항 이미지 저장
+	//공지사항 이미지 폴더 저장
 	public Map<String, Object> parseFileInfo(Map<String, Object> map, MultipartFile file) throws Exception {
 		
 		String noticeCode = String.valueOf(map.get("notice_code"));
@@ -262,7 +263,7 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	}
 	
 	
-	// 공지사항 수정 메서드 
+	// 공지사항 수정
 	//임시방편 하드코딩! 이미지 insert부분은 parseFileInfo 메서드와 통합하여 코드 줄일 것 (결합도? 낮출것)
 	@Override
 	@RequestMapping(value = "/admin/updateNotice.do", method = RequestMethod.POST)

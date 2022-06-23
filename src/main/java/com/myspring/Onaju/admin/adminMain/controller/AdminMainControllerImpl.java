@@ -39,74 +39,75 @@ import com.myspring.Onaju.admin.adminMain.service.AdminMainService;
 		 String viewName = (String)request.getAttribute("viewName"); 
 		 mav.setViewName(viewName); 
 		 return mav; 
-	}
+	 }
 	 
-	// 관리자 로그인 폼 이동
-	@Override
-	@RequestMapping(value = "/admin/loginForm.do", method = RequestMethod.GET)
-	public ModelAndView adminLoginForm(HttpServletRequest request, HttpServletResponse response, String message) throws Exception {	
-		ModelAndView mav = new ModelAndView();
-		if(message == null) {
-			mav.addObject("message", message);
-		}
-		mav.setViewName("/admin/main/loginForm");
-		return mav;
-	}
+	 // 관리자 로그인 폼 이동
+	 @Override
+	 @RequestMapping(value = "/admin/loginForm.do", method = RequestMethod.GET)
+	 public ModelAndView adminLoginForm(HttpServletRequest request, HttpServletResponse response, String message) throws Exception {	
+		 ModelAndView mav = new ModelAndView();
+		 if(message == null) {
+			 mav.addObject("message", message);
+		 }
+		 mav.setViewName("/admin/main/loginForm");
+		 return mav;
+	 }
 
-	// 관리자 로그인
-	@Override
-	@RequestMapping(value="/admin/adminLogin.do", method = RequestMethod.POST)
-	public ModelAndView adminLogin(@RequestParam Map<String, String> loginMap, HttpServletRequest request,
+	 // 관리자 로그인
+	 @Override
+	 @RequestMapping(value="/admin/adminLogin.do", method = RequestMethod.POST)
+	 public ModelAndView adminLogin(@RequestParam Map<String, String> loginMap, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
+		 	ModelAndView mav = new ModelAndView();
+		 	HttpSession session = request.getSession();
 		
-		int result_id = adminMainService.resultLoginId(loginMap.get("a_id"));
+		 	int result_id = adminMainService.resultLoginId(loginMap.get("a_id"));
 		
-		if(result_id == 1) {
-			int result_pw = adminMainService.resultLoginPw(loginMap);
-			if(result_pw == 1) {
-				adminVO = adminMainService.adminLogin(loginMap); //DB에 있는 관리자 정보를 불러옴
-				session.setAttribute("isLogOn", "admin");
-				session.setAttribute("adminInfo", adminVO);
-				session.setMaxInactiveInterval(3000);
-				mav.setViewName("/admin/main");	
-			}else {
-				String message = "비밀번호가 잘못 되었습니다.";
-				mav.addObject("message", message);
-				mav.setViewName("/admin/main/loginForm");
-			}
-		}else {
-			String message = "아이디를 찾을 수 없습니다.";
-			mav.addObject("message", message);
-			mav.setViewName("/admin/main/loginForm");
-		}
-		return mav;
-	}
+		 	if(result_id == 1) {
+		 		int result_pw = adminMainService.resultLoginPw(loginMap);
+		 		if(result_pw == 1) {
+		 			adminVO = adminMainService.adminLogin(loginMap); //DB에 있는 관리자 정보를 불러옴
+		 			session.setAttribute("isLogOn", "admin");
+		 			session.setAttribute("adminInfo", adminVO);
+		 			session.setMaxInactiveInterval(3000);
+		 			mav.setViewName("/admin/main");	
+		 		}else {
+		 			String message = "비밀번호가 잘못 되었습니다.";
+		 			mav.addObject("message", message);
+		 			mav.setViewName("/admin/main/loginForm");
+		 		}
+		 	}else {
+		 		String message = "아이디를 찾을 수 없습니다.";
+		 		mav.addObject("message", message);
+		 		mav.setViewName("/admin/main/loginForm");
+		 	}	
+		 	return mav;
+	 }
 	
-	// 관리자 회원 가입
-	@Override
-	@RequestMapping(value = "/admin/joinForm.do", method = RequestMethod.GET)
-	public String adminJoinForm() throws Exception {
-		return "/admin/main/joinForm";
-	}
+	 // 관리자 회원 가입
+	 @Override
+	 @RequestMapping(value = "/admin/joinForm.do", method = RequestMethod.GET)
+	 public String adminJoinForm() throws Exception {
+		 return "/admin/main/joinForm";
+	 }
 
-	// 관리자 아이디 중복 검사
-	@Override
-	@RequestMapping(value="/admin.overlapped.do", method = RequestMethod.POST)
-	public ResponseEntity<String> adminOverlapped(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ResponseEntity<String> resEntity = null;
-		String result = adminMainService.adminOverlapped(id);
-		resEntity =new ResponseEntity<String>(result, HttpStatus.OK);
-		return resEntity;	
-	}
-
-	@Override
-	@RequestMapping(value = "/admin/LogOut.do", method = RequestMethod.GET)
-	public String adminLogOut(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		session.removeAttribute("adminIfo");
-		session.invalidate();
-		return "redirect:/admin/loginForm.do";
-	}	
+	 // 관리자 아이디 중복 검사
+	 @Override
+	 @RequestMapping(value="/admin.overlapped.do", method = RequestMethod.POST)
+	 public ResponseEntity<String> adminOverlapped(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		 ResponseEntity<String> resEntity = null;
+		 String result = adminMainService.adminOverlapped(id);
+		 resEntity =new ResponseEntity<String>(result, HttpStatus.OK);
+		 return resEntity;	
+	 }
+	 
+	 // 관리자 로그아웃
+	 @Override
+	 @RequestMapping(value = "/admin/LogOut.do", method = RequestMethod.GET)
+	 public String adminLogOut(HttpServletRequest request, HttpServletResponse response) {
+		 HttpSession session = request.getSession();
+		 session.removeAttribute("adminIfo");
+		 session.invalidate();
+		 return "redirect:/admin/loginForm.do";
+	 }	
 }

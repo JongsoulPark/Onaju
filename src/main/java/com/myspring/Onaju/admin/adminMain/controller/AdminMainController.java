@@ -28,6 +28,7 @@ public interface AdminMainController {
 	public String adminJoinForm() throws Exception;
 	// 관리자 아이디 중복 검사
 	public ResponseEntity<String> adminOverlapped(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	// 관리자 로그아웃
 	public String adminLogOut(HttpServletRequest request, HttpServletResponse response);
 }
  

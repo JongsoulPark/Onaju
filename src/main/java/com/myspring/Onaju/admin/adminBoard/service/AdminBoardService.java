@@ -9,13 +9,13 @@ import com.myspring.Onaju.admin.adminCommon.paging.Criteria;
 
 public interface AdminBoardService {
 	
-	// ==================== 공지사항 게시판 ====================
+	//  ============================== 공지사항 게시판  ============================== 
 	
 	// 공지사항 목록
 	public List<Map<String,Object>> noticeList(Criteria cri) throws Exception;
 	// 공지사항 게시글 상세
 	public  Map<String, Object> noticeDetail(String notice_code) throws Exception;
-	// 공지사항 게시글 상세 이미지 파일 이름
+	// 공지사항 게시글 상세 이미지 호출
 	public String getImgFile(Map<String, Object> imgInfoMap) throws Exception;
 	// 공지사항 게시글 개수
 	public int noticeListTotal(Criteria cri);
@@ -31,12 +31,10 @@ public interface AdminBoardService {
 	public void updateNotice(Map<String, Object> noticeMap);
 	// 공지사항 게시글 삭제
 	public int deleteNotice(String noticeMap);
-	// 공지사항 게시글 삭제 시 이미지 삭제
-	public void deleteNoticeImgInfo(String img_code);
 	
 	
 	
-	// ==================== 1대1 게시판 ====================
+	//  ============================== 1대1 게시판  ============================== 
 	
 	// 1대1 게시판 목록
 	public List<Map<String, Object>> enquireBoardList(Criteria cri);
@@ -51,7 +49,7 @@ public interface AdminBoardService {
 	public int insertEnquireReply(AdminEnquireReplyVO replyVO);
 	// 1대1 게시판 상세글 댓글 목록
 	public List<Map<String, Object>> enquireReplyDetail(AdminEnquireReplyVO replyVO);
-	// 1대1 게시판 
+	// 1대1 게시판 댓글 유무
 	public int updateReplyCheck(AdminEnquireReplyVO replyVO);
 	
 	// 1대1 게사판 상세글 댓글 수정
