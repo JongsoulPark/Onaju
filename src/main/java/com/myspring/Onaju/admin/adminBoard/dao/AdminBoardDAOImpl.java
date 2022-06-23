@@ -48,10 +48,6 @@ public class AdminBoardDAOImpl implements AdminBoardDAO {
 		return sqlSession.insert("mapper.admin.board.insertImgFile", imgFile);
 	}
 
-	@Override
-	public List<Map<String, Object>> selectSearchNotice(Map<String, Object> searchMap) {
-		return sqlSession.selectList("mapper.admin.board.selectSearchNotice", searchMap);
-	}
 	
 	@Override
 	public void selectUpdateImgFile(Map<String, Object> imgFile) {
@@ -126,11 +122,6 @@ public class AdminBoardDAOImpl implements AdminBoardDAO {
 	public void deleteNoticeImgInfo(String img_code) {
 		sqlSession.delete("mapper.admin.board.deleteNoticeImgInfo", img_code);
 		
-	}
-
-	@Override
-	public String selectImgOrgName(String img_code) {
-		return sqlSession.selectOne("mapper.admin.board.selectImgOrgName", img_code);
 	}
 
   
