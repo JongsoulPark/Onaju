@@ -39,7 +39,7 @@ import com.myspring.Onaju.admin.adminCommon.paging.PageVO;
 /*
  * 5조 오나주 웹 개발 프로젝트(그린컴퓨터아트학원)
  * 작성자 : 박종설
- * 최종 작성일 : 2022-05-24
+ * 최종 작성일 : 2022-06-23
  * 관리자 게시판 관리(공지사항, 1대1 문의)
  */
 @RestController("adminBoardController")
@@ -52,9 +52,13 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	@Autowired
 	private AdminVO adminVO;
 	
+	
+	// 이미지 파일 경로 serlet-context에 설정
 	@Resource(name="adminUploadPath")
 	String adminUploadPath;
 	
+	
+	//  ============================== 공지사항 게시판  ============================== 
 	
 	// 공지사항 목록
 	@Override
@@ -131,6 +135,7 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	@Override
 	@RequestMapping(value = "/admin/noticeForm.do", method = RequestMethod.GET)
 	public ModelAndView adminNoticeForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		ModelAndView mav =new ModelAndView(); 
 		String viewName = (String)request.getAttribute("viewName"); 
 		mav.setViewName(viewName); 
@@ -240,9 +245,11 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	@Override
 	@RequestMapping(value = "/admin/imgDelete.do", method = RequestMethod.POST)
 	public ResponseEntity<String> imgDelete(@RequestParam Map<String, Object> delet_img) {
+		
 		String Save_File_Name = (String)delet_img.get("Save_File_Name");
 		String img_code = (String)delet_img.get("img_code");
 		File filePath = new File(adminUploadPath +"\\"+ Save_File_Name);
+		
 		if(filePath.exists()) {
 			filePath.delete();
 			adminBoardService.deleteNoticeImg(img_code);
@@ -323,6 +330,7 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	@Override
 	@RequestMapping(value = "/admin/deleteNotice.do", method = RequestMethod.POST)
 	public ModelAndView deleteNotice(@RequestParam String notice_code, @ModelAttribute("cri") Criteria cri) throws Exception {
+		
 		ModelAndView mav = new ModelAndView();
 		
 		int update_post_check = adminBoardService.deleteNotice(notice_code);
@@ -343,13 +351,15 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	}
 		
 		
-		
+	
+	//  ============================== 1대1 게시판  ============================== 
 		
 	
 	// 1대1 게시판 목록
 	@Override
 	@RequestMapping(value = "/admin/enquireBoard.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView enquireBoardList(Criteria cri) throws Exception {
+		
 		ModelAndView mav = new ModelAndView();
 		
 		int total = adminBoardService.enquireListTotal(cri);
@@ -359,6 +369,8 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		mav.addObject("pageMaker", new PageVO(cri, total));
 		return mav;
 	}
+	
+	
 	// 1대1 게시판 상세
 	@Override
 	@RequestMapping(value = "/admin/enquireDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -372,20 +384,26 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		mav.addObject("enquireDetail", enquireDetail);
 		return mav;
 	}
+	
+	
 	// 1대1 게시판 댓글 등록
 	@Override
 	@RequestMapping(value = "admin/newReply.do", method = RequestMethod.POST)
 	public ResponseEntity<String> insertEnquireReply(@ModelAttribute("replyVO") AdminEnquireReplyVO replyVO, HttpServletRequest request, HttpServletResponse response){
+		
 		HttpSession session = request.getSession();
 		adminVO = (AdminVO)session.getAttribute("adminInfo");
 		replyVO.setA_id(adminVO.getA_id());
 		int insertReply = adminBoardService.insertEnquireReply(replyVO);
 		return insertReply == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	
 	// 1대1 게시판 댓글 목록 호출
 	@Override
 	@RequestMapping(value = "/admin/enquireReplyList.do", method = {RequestMethod.GET, RequestMethod.POST} )
 	public ResponseEntity<List<Map<String, Object>>> ajaxcommentList(AdminEnquireReplyVO replyVO){
+		
 		List<Map<String, Object>> replysList = adminBoardService.enquireReplyDetail(replyVO);
 		return new ResponseEntity<>(replysList, HttpStatus.OK);
 	}
@@ -395,10 +413,12 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	@Override
 	@RequestMapping(value = "/admin/replyDelete.do" , method = {RequestMethod.GET, RequestMethod.POST})
 	public ResponseEntity<Map<String, Object>> replydelete(@RequestParam Map<String, Object> reMap) {
+		
 		Map<String,Object> data = new HashMap<String, Object>();
 		String re_NO = (String)reMap.get("re_NO");
 		String enquire_NO = (String)reMap.get("enquire_NO");
 		int delete_re_NO = adminBoardService.deleteReply(re_NO);
+		
 		if(delete_re_NO == 1) {
 			String message = "success";	
 			data.put("message", message);

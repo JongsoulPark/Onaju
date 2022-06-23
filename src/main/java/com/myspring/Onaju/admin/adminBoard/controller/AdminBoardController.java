@@ -20,7 +20,7 @@ import com.myspring.Onaju.admin.adminCommon.paging.Criteria;
 public interface AdminBoardController {
 	
 	
-	// 공지사항 게시판
+	// ============================== 공지사항 게시판 ============================== 
 	
 	
 	// 공지사항 목록
@@ -47,7 +47,8 @@ public interface AdminBoardController {
 	public ModelAndView deleteNotice(String notice_code, @ModelAttribute("cri") Criteria cri) throws Exception;
 	
 	
-	//1대1 게시판
+	
+	//  ============================== 1대1 게시판 ============================== 
 	
 	
 	// 1대1 게시판 목록

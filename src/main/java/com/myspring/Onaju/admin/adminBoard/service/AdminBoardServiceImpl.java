@@ -46,12 +46,6 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	public int insertImgFile(Map<String, Object> imgFile) throws Exception {
 		return adminBoardDAO.insertImgFile(imgFile);
 	}
-
-	@Override
-	public List<Map<String, Object>> searchNotice(Map<String, Object> searchMap) {
-		return adminBoardDAO.selectSearchNotice(searchMap);
-	}
-
 	
 	
 	
@@ -131,10 +125,6 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 		
 	}
 
-	@Override
-	public String Org_File_Name(String Img_code) {
-		return adminBoardDAO.selectImgOrgName(Img_code);
-	}
 
 
 

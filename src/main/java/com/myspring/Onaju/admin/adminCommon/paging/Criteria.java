@@ -7,30 +7,30 @@ import org.springframework.stereotype.Component;
 // 기본 값으로 1페이지와 10개의 개수를 지정
 @Component("criteria")
 public class Criteria {
-	private int pageNum;
-	private int amount;
-	private String join_startDate;
-	private String join_endDate;
-	private String h_id2;
-	private String h_name2;
-	private String h_sellerNum2;
-	private String h_del_yn;
-	private String hostInfo_name2;
-	private String info_del_yn;
-	private String roadAddress2;
-	private String u_id2;
-	private String u_del_yn;
-	private String u_name2;
-	private String r_del_yn;
-	private String order_code2;
-	private String pay_state2;
-	private String notice_title2;
-	private String notice_type2;
-	private String title;
-	private String reply_yn;
-	private String a_del_yn;
-	private String a_id2;
-	private String a_name2;
+	private int pageNum;				// 페이지 넘버
+	private int amount;					// 페이지에 띄울 기본 개수
+	private String join_startDate;		// 페이징 날짜 검색 시
+	private String join_endDate;		// 페이징 날짜 검색 시
+	private String h_id2;				// 페이징 판매자 검색 시
+	private String h_name2;				// 페이징 판매자 이름 검색 시
+	private String h_sellerNum2;		// 페이징 사업자 번호 검색 시
+	private String h_del_yn;			// 페이징 사업자 해지 유무
+	private String hostInfo_name2;		// 페이징 가맹점명 검색 시
+	private String info_del_yn;			// 페이징 가맹점 해지 유무
+	private String roadAddress2;		// 페이징 주소 검색 시
+	private String u_id2;				// 페이징 회원 아이디 검색 시
+	private String u_del_yn;			// 페이징 회원 탈퇴 유무
+	private String u_name2;				// 페이징 회원 이름 검색 시
+	private String r_del_yn;			// 페이징 상품 해지 유무
+	private String order_code2;			// 페이징 주문번호 검색 시
+	private String pay_state2;			// 페이징 결제 상태 검색 시
+	private String notice_title2;		// 페이징 공지사항 제목 검색 시
+	private String notice_type2;		// 페이징 공지사항 유형 검색 시
+	private String title;				// 페이징 1대1 게시판 검색 시 (수정 할 것, 1대1 adminNoticeVO와 꼬임)
+	private String reply_yn;			// 페이징 1대1 게시판 댓글 유무 검색 시
+	private String a_del_yn;			// 페이징 관리자 재직 유무 검색 시
+	private String a_id2;				// 페이징 관리자 아이디 검색 시
+	private String a_name2;				// 페이징 관리자 이름 검색 시
 	
 	public int getPageNum() {
 		return pageNum;
